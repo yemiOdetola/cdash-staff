@@ -4717,9 +4717,9 @@ section.parallax .row .background-image-holder {
   letter-spacing: .5px;
   color: #fff;
   text-transform: uppercase;
-  height: 26px;
+  height: 27px;
   min-width: 65px;
-  padding: 0 10px;
+  padding: 6px 10px;
   text-align: center;
   border-radius: 50px;
   position: absolute;
@@ -6109,6 +6109,9 @@ a.block:hover > .feature {
 }
 .feature-1 p {
   margin: 0;
+}
+.fearure-1 h5 {
+  width: 76%;
 }
 .feature-1 p.lead {
   min-height: 5.05263157894737em;

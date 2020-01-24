@@ -1,0 +1,8 @@
+.assets {
+  width: 95%;
+  margin: 0 auto;
+  @media(min-width: 992px) {
+    width: 70%;
+    margin: auto;
+  }
+}
