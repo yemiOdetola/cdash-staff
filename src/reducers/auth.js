@@ -5,7 +5,7 @@ const initialState = {
     userDetails: {}
 }
 
-export default function articles(state = initialState, action) {
+export default function auth(state = initialState, action) {
     switch (action.type) {
             case LOGIN:
             let user = Object.assign({}, action.payload);

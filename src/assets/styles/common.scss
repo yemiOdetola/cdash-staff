@@ -1,35 +1,106 @@
-.assets {
-  width: 95%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  @media(min-width: 992px) {
-    width: 70%;
-    margin: auto;
-  }
-  .each-asset {
-    width: 94%;
-    margin: 1rem auto;
-    height: 100px;
-    border: 1px solid #ECECEC;
-    border-radius: 0.5rem;
-    background-color: #FFFFFF;
-    padding: 1.25rem;
+.component-section {
+  background-color: #fafafa;
+  padding: 4rem 0;
+  .assets {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
     @media(min-width: 992px) {
-      height: 105px;
-      width: 32%;
+      width: 75%;
+      margin: auto;
     }
-    .title {
-      font-weight: 500;
-      font-size: 1.25rem;
+    @media(min-width: 1200px) {
+      width: 60%;
+      margin: auto;
     }
-    .sub {
-      font-size: 0.975rem;
-      font-weight: 300;
+    .each-asset {
+      width: 94%;
+      margin: 1rem auto;
+      height: 100px;
+      border: 1px solid #ECECEC;
+      border-radius: 0.5rem;
+      background-color: #FFFFFF;
+      padding: 1.25rem;
+      @media(min-width: 992px) {
+        height: 105px;
+        width: 30%;
+        margin: 1rem;
+      }
+      .title {
+        font-weight: 500;
+        font-size: 1.25rem;
+      }
+      .sub {
+        font-size: 0.975rem;
+        font-weight: 300;
+      }
+      a {
+        font-size: 0.875rem;
+      }
     }
-    a {
-      font-size: 0.875rem;
+  }
+}
+
+.component-header {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  @media(min-width: 992px) {
+    font-size: 2.25rem;
+  }
+}
+
+.flex-itemss {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.data-loading {
+  position: absolute;
+  top: 35%;
+  left: 45%;
+  z-index: 99999;
+  @media(max-width: 767px) {
+    left: 30%;
+    top: 46%;
+  }
+  .loader-img {
+    display: block;
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.table-toppings {
+  width: 98%;
+  margin: 1rem auto;
+  overflow-x: scroll;
+  @media(min-width: 992px) {
+    width: 68%;
+  }
+  .tbl-header {
+    table {
+      thead tr {
+        height: 4rem;
+        th {
+          font-weight: 500;
+          color: #333;
+        }
+      }
+      tbody tr {
+        height: 3.75rem;
+        font-weight: 300;
+        color: #888;
+        font-size: 0.935rem;
+      }
     }
   }
 }
