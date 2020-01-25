@@ -50,7 +50,42 @@ export class Landing extends Component {
               <section className="text-center">
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-6 col-lg-3">
+                    <div className="col-md-4 col-lg-2">
+                      <div className="text-block">
+                        <i className="icon icon--lg icon-Mail-3"></i>
+                        <h4>Regular Updates</h4>
+                        <p> direct to your inbox</p>
+                      </div>
+                    </div>
+                    <div className="col-md-4 col-lg-2">
+                      <div className="text-block">
+                        <i className="icon icon--lg icon-Mail-3"></i>
+                        <h4>Regular Updates</h4>
+                        <p> direct to your inbox</p>
+                      </div>
+                    </div>
+                    <div className="col-md-4 col-lg-2">
+                      <div className="text-block">
+                        <i className="icon icon--lg icon-Mail-3"></i>
+                        <h4>Regular Updates</h4>
+                        <p> direct to your inbox</p>
+                      </div>
+                    </div>
+                    <div className="col-md-4 col-lg-2">
+                      <div className="text-block">
+                        <i className="icon icon--lg icon-Mail-3"></i>
+                        <h4>Regular Updates</h4>
+                        <p> direct to your inbox</p>
+                      </div>
+                    </div>
+                    <div className="col-md-4 col-lg-2">
+                      <div className="text-block">
+                        <i className="icon icon--lg icon-Mail-3"></i>
+                        <h4>Regular Updates</h4>
+                        <p> direct to your inbox</p>
+                      </div>
+                    </div>
+                    <div className="col-md-4 col-lg-2">
                       <div className="text-block">
                         <i className="icon icon--lg icon-Mail-3"></i>
                         <h4>Regular Updates</h4>

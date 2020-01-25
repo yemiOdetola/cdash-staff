@@ -1,8 +1,9 @@
-import { FETCH_ASSETS_CONTAINERS, ASSETS } from '../constants';
+import { FETCH_ASSETS_CONTAINERS, ASSETS, ASSET_DATA, CLEAR } from '../constants';
 
 const initialState = {
   assetsContainers: [],
-  assets: []
+  assets: [],
+  asset_data: {}
 }
 
 export default function assets(state = initialState, action) {
@@ -12,11 +13,23 @@ export default function assets(state = initialState, action) {
         ...state,
         assetsContainers: [...state.assetsContainers, action.payload]
       }
-      case ASSETS:
-        return {
-          ...state,
-          assets: [...state.assets, action.payload]
-        }
+    case ASSETS:
+      return {
+        ...state,
+        assets: [...state.assets, action.payload]
+      }
+    case ASSET_DATA:
+      const asset_data = Object.assign({}, action.payload);
+      return {
+        ...state,
+        asset_data: asset_data
+      }
+    case CLEAR:
+      return {
+        ...state,
+        assets: [],
+        asset_data: {}
+      }
     default:
       return state;
   }
