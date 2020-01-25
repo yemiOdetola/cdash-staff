@@ -22,7 +22,7 @@ export class AssetData extends Component {
     return (
       <>
         <div className={'data-loading'}>
-          <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.asset_data ? 'loader-img' : 'hide'} alt="+" />
+          <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.asset_data.name ? 'loader-img' : 'hide'} alt="+" />
         </div>
         <Header />
         <div className="row">

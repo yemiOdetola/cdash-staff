@@ -25,10 +25,12 @@ export default function assets(state = initialState, action) {
         asset_data: asset_data
       }
     case CLEAR:
+      const empty = {};
       return {
         ...state,
         assets: [],
-        asset_data: {}
+        asset_data: empty,
+        assetsContainers: []
       }
     default:
       return state;

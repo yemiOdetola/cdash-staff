@@ -8,6 +8,8 @@ import Users from './components/Users';
 import Staffs from './components/Staffs';
 import UserDetails from './components/UserDetails';
 import StaffDetails  from './components/StaffDetails';
+import SocialDetails  from './components/SocialDetails';
+import Socials from './components/Socials';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <Route path='/login' component={Login} />
       <Route path='/users/user-data/:id' component={UserDetails} />
       <Route path='/users' component={Users} />
+      <Route path='/socials/social-data/:id' component={SocialDetails} />
+      <Route path='/socials' component={Socials} />
       <Route path='/staffs/staff-data/:id' component={StaffDetails} />
       <Route path='/staffs' component={Staffs} />
       <Route path='/asset-details/:id' component={AssetDetails} />

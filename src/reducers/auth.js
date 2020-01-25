@@ -39,14 +39,14 @@ export default function auth(state = initialState, action) {
         staffDetails: staffDetails
       }
     case CLEAR:
-      let details = {};
+      let empty = {};
       return {
         ...state,
-        user: details,
+        user: empty,
         staffs: [],
         users: [],
-        userDetails: details,
-        staffDetails: details
+        userDetails: empty,
+        staffDetails: empty
       }
     default:
       return state;

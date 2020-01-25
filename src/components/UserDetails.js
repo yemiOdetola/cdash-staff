@@ -20,7 +20,7 @@ export class UserDetails extends Component {
     return (
       <>
         <div className={'data-loading'}>
-          <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.userDetails ? 'loader-img' : 'hide'} alt="+" />
+          <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.userDetails.name ? 'loader-img' : 'hide'} alt="+" />
         </div>
         <Header />
         {this.props.userDetails ?

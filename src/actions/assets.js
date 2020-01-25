@@ -5,6 +5,7 @@ import globals from '../globals';
 export function fetchAssetsContainers(payload) {
   const userToken = localStorage.getItem('userToken');
   return dispatch => {
+    dispatch(clearAssets(''))
     axios.get(`${globals.base_url}/asset`, {
       headers: {
         'Authorization': 'Bearer ' + userToken
