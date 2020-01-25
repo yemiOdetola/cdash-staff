@@ -17,6 +17,10 @@ export class Socials extends Component {
     this.props.fetchSocials();
   }
 
+  back = () => {
+    this.props.history.go(-1);
+  }
+
   render() {
     let table = [];
     if (this.props.socials[0]) {
@@ -34,29 +38,33 @@ export class Socials extends Component {
     }
     return (
       <>
-      <div className={'data-loading'}>
-        <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.socials.length ? 'loader-img' : 'hide'} alt="+" />
-      </div>
-      <Header />
-      <section className="table-toppings">
-        <h1 className="text-center component-header mb-5">Social networks</h1>
-        <div className="tbl-header">
-          <table>
-            <thead>
-              <tr>
-                <th>Account name</th>
-                <th>Account type</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {table}
-            </tbody>
-          </table>
+        <div className={'data-loading'}>
+          <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.socials.length ? 'loader-img' : 'hide'} alt="+" />
         </div>
-      </section>
-      <Footer />
-    </>
+        <Header />
+        <div className="go-back mt-5" onClick={this.back}>
+          <img src={require("../assets/images/back.svg")} alt="<<<" />
+          <span>Back</span>
+        </div>
+        <section className="table-toppings">
+          <h1 className="text-center component-header mb-5">Social networks</h1>
+          <div className="tbl-header">
+            <table>
+              <thead>
+                <tr>
+                  <th>Account name</th>
+                  <th>Account type</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {table}
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <Footer />
+      </>
     )
   }
 }
@@ -65,4 +73,4 @@ const mapStateToProps = (state) => ({
   socials: state.socials.socials
 })
 
-export default connect(mapStateToProps, {fetchSocials})(Socials)
+export default connect(mapStateToProps, { fetchSocials })(Socials)

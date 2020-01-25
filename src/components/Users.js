@@ -16,6 +16,10 @@ export class Users extends Component {
   componentDidMount() {
     this.props.fetchUsers();
   }
+
+  back = () => {
+    this.props.history.go(-1);
+  }
   render() {
     let table = [];
     if (this.props.users[0]) {
@@ -38,6 +42,10 @@ export class Users extends Component {
           <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.users.length ? 'loader-img' : 'hide'} alt="+" />
         </div>
         <Header />
+        <div className="go-back mt-5" onClick={this.back}>
+          <img src={require("../assets/images/back.svg")} alt="<<<" />
+          <span>Back</span>
+        </div>
         <section className="table-toppings">
           <h1 className="text-center component-header mb-5">All users</h1>
           <div className="tbl-header">

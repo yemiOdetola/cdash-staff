@@ -27,6 +27,10 @@ export class StaffDetails extends Component {
           <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.staffDetails.name ? 'loader-img' : 'hide'} alt="+" />
         </div>
         <Header />
+        <div className="go-back mt-5" onClick={this.back}>
+          <img src={require("../assets/images/back.svg")} alt="<<<" />
+          <span>Back</span>
+        </div>
         {this.props.staffDetails ?
           <div className="col-lg-12 p-0">
             <section>

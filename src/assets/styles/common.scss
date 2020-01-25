@@ -182,3 +182,30 @@
 .uppercase {
   text-transform: uppercase;
 }
+
+.go-back {
+  display: flex;
+  justify-content: flex-start;
+  margin: 1rem;
+  &:hover {
+    cursor: pointer;
+  }
+  img {
+    width: 18px;
+    height: 18px;
+    display: block;
+    margin-right: 0.35rem;
+  }
+  span {
+    display: block;
+    font-weight: 500;
+    font-size: 1.25rem;
+    position: relative;
+    bottom: 0.275rem;
+  }
+}
+
+section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}

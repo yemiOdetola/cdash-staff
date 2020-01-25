@@ -11,9 +11,14 @@ export class UserDetails extends Component {
       loading: true
     }
   }
+
   componentDidMount() {
     const userId = this.props.match.params['id'];
     this.props.fetchUserDetails(userId);
+  }
+
+  back = () => {
+    this.props.history.go(-1);
   }
 
   render() {
@@ -23,6 +28,10 @@ export class UserDetails extends Component {
           <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.userDetails.name ? 'loader-img' : 'hide'} alt="+" />
         </div>
         <Header />
+        <div className="go-back mt-5" onClick={this.back}>
+          <img src={require("../assets/images/back.svg")} alt="<<<" />
+          <span>Back</span>
+        </div>
         {this.props.userDetails ?
           <div className="col-lg-12 p-0">
             <section>

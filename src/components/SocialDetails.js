@@ -16,6 +16,10 @@ export class SocialDetails extends Component {
     this.props.fetchSocialDetails(socialId);
   }
 
+  back = () => {
+    this.props.history.go(-1);
+  }
+
   render() {
     return (
       <>
@@ -23,6 +27,10 @@ export class SocialDetails extends Component {
           <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.socialDetails.data ? 'loader-img' : 'hide'} alt="+" />
         </div>
         <Header />
+        <div className="go-back mt-5" onClick={this.back}>
+          <img src={require("../assets/images/back.svg")} alt="<<<" />
+          <span>Back</span>
+        </div>
         {this.props.socialDetails ?
           <div className="col-lg-12 p-0">
             <section>
@@ -30,10 +38,10 @@ export class SocialDetails extends Component {
                 <div className="row">
                   <div className="col-lg-4 p-5">
                     <div className="text-block">
-                    <img className={this.props.socialDetails.type === 'instagram' ? "social" : 'hide'} src={require('../assets/images/instagram.svg')} alt={this.props.socialDetails._id} />
-                    <img className={this.props.socialDetails.type === 'linkedin' ? "social" : 'hide'} src={require('../assets/images/linkedin.svg')} alt={this.props.socialDetails._id} />
-                    <img className={this.props.socialDetails.type === 'facebook' ? "social" : 'hide'} src={require('../assets/images/facebook.svg')} alt={this.props.socialDetails._id} />
-                    <img className={this.props.socialDetails.type === 'twitter' ? "social" : 'hide'} src={require('../assets/images/twitter.svg')} alt={this.props.socialDetails._id} />
+                      <img className={this.props.socialDetails.type === 'instagram' ? "social" : 'hide'} src={require('../assets/images/instagram.svg')} alt={this.props.socialDetails._id} />
+                      <img className={this.props.socialDetails.type === 'linkedin' ? "social" : 'hide'} src={require('../assets/images/linkedin.svg')} alt={this.props.socialDetails._id} />
+                      <img className={this.props.socialDetails.type === 'facebook' ? "social" : 'hide'} src={require('../assets/images/facebook.svg')} alt={this.props.socialDetails._id} />
+                      <img className={this.props.socialDetails.type === 'twitter' ? "social" : 'hide'} src={require('../assets/images/twitter.svg')} alt={this.props.socialDetails._id} />
                       <h1 className="title">{this.props.socialDetails.data ? this.props.socialDetails.data.name || this.props.socialDetails.data.full_name : 'Social details'}</h1>
                     </div>
                   </div>

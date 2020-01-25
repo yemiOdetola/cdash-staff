@@ -18,6 +18,10 @@ export class AssetDetails extends Component {
     const assetId = this.props.match.params['id'];
     this.props.fetchAssets(assetId);
   }
+  back = () => {
+    this.props.history.go(-1);
+  }
+
   render() {
     let table = [];
     if (this.props.assets[0]) {
@@ -38,10 +42,14 @@ export class AssetDetails extends Component {
     }
     return (
       <>
-          <div className={'data-loading'}>
+        <div className={'data-loading'}>
           <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.assets.length ? 'loader-img' : 'hide'} alt="+" />
         </div>
         <Header />
+        <div className="go-back mt-5" onClick={this.back}>
+          <img src={require("../assets/images/back.svg")} alt="<<<" />
+          <span>Back</span>
+        </div>
         <section className="table-toppings">
           <h1 className="text-center component-header mb-5">All assets</h1>
           <div className="tbl-header">

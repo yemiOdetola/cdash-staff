@@ -17,6 +17,10 @@ export class Staffs extends Component {
     this.props.fetchStaffs();
   }
 
+  back = () => {
+    this.props.history.go(-1);
+  }
+
   render() {
     let table = [];
     if (this.props.staffs[0]) {
@@ -37,32 +41,36 @@ export class Staffs extends Component {
     }
     return (
       <>
-      <div className={'data-loading'}>
-        <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.staffs.length ? 'loader-img' : 'hide'} alt="+" />
-      </div>
-      <Header />
-      <section className="table-toppings">
-        <h1 className="text-center component-header mb-5">Staffs</h1>
-        <div className="tbl-header">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone number</th>
-                <th>Position</th>
-                <th>Date joined</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {table}
-            </tbody>
-          </table>
+        <div className={'data-loading'}>
+          <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.staffs.length ? 'loader-img' : 'hide'} alt="+" />
         </div>
-      </section>
-      <Footer />
-    </>
+        <Header />
+        <div className="go-back mt-5" onClick={this.back}>
+          <img src={require("../assets/images/back.svg")} alt="<<<" />
+          <span>Back</span>
+        </div>
+        <section className="table-toppings">
+          <h1 className="text-center component-header mb-5">Staffs</h1>
+          <div className="tbl-header">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone number</th>
+                  <th>Position</th>
+                  <th>Date joined</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {table}
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <Footer />
+      </>
     )
   }
 }
@@ -71,4 +79,4 @@ const mapStateToProps = (state) => ({
   staffs: state.auth.staffs
 })
 
-export default connect(mapStateToProps, {fetchStaffs})(Staffs)
+export default connect(mapStateToProps, { fetchStaffs })(Staffs)

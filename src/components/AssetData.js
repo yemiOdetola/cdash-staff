@@ -18,6 +18,10 @@ export class AssetData extends Component {
     const assetId = this.props.match.params['id'];
     this.props.fetchAssetData(assetId);
   }
+
+  back = () => {
+    this.props.history.go(-1);
+  }
   render() {
     return (
       <>
@@ -25,6 +29,10 @@ export class AssetData extends Component {
           <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.asset_data.name ? 'loader-img' : 'hide'} alt="+" />
         </div>
         <Header />
+        <div className="go-back mt-5" onClick={this.back}>
+          <img src={require("../assets/images/back.svg")} alt="<<<" />
+          <span>Back</span>
+        </div>
         <div className="row">
           <div className="container-fluid p-0">
             {this.props.asset_data ?
