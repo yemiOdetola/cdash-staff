@@ -13,7 +13,11 @@ export class SocialDetails extends Component {
   }
   componentDidMount() {
     const socialId = this.props.match.params['id'];
-    this.props.fetchSocialDetails(socialId);
+    if(localStorage.getItem('userToken') && localStorage.getItem('userId')) {
+      this.props.fetchSocialDetails(socialId);
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
   back = () => {

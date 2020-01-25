@@ -14,7 +14,11 @@ export class Users extends Component {
     }
   }
   componentDidMount() {
-    this.props.fetchUsers();
+    if (localStorage.getItem('userToken') && localStorage.getItem('userId')) {
+      this.props.fetchUsers();
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
   back = () => {
@@ -75,4 +79,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {fetchUsers})(Users)
+export default connect(mapStateToProps, { fetchUsers })(Users)

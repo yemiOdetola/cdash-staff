@@ -12,7 +12,6 @@ export function login(props, payload) {
           return console.log(response, 'not successful');
         }
         let res = response.data;
-        localStorage.setItem('userEmail', res.email);
         localStorage.setItem('userId', res.data.user_id);
         localStorage.setItem('userToken', res.data.user_token);
         dispatch(loginUser(res.data));

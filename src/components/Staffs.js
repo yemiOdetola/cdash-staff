@@ -14,7 +14,11 @@ export class Staffs extends Component {
     }
   }
   componentDidMount() {
-    this.props.fetchStaffs();
+    if(localStorage.getItem('userToken') && localStorage.getItem('userId')) {
+      this.props.fetchStaffs();
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
   back = () => {

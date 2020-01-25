@@ -14,7 +14,11 @@ export class Socials extends Component {
     }
   }
   componentDidMount() {
-    this.props.fetchSocials();
+    if(localStorage.getItem('userToken') && localStorage.getItem('userId')) {
+      this.props.fetchSocials();
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
   back = () => {

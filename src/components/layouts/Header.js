@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 
 export class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+  logout = () => {
+    localStorage.setItem('userToken', '');
+    localStorage.setItem('userId', '');
+    this.props.history.push('/login');
+  }
   render() {
     return (
       <>
@@ -22,13 +31,10 @@ export class Header extends Component {
                     <div className="ml-auto">
                       <div className="bar__module">
                         <ul className="menu-horizontal">
-                          <li className="dropdown">
-                            <span>Home</span>
+                          <li className={!this.props.user ? "dropdown bttn login" : 'hide'}>
+                            <Link to="/login"> Login </Link>
                           </li>
-                          <li className="dropdown">
-                            <span> Login </span>
-                          </li>
-                          <li className="dropdown">
+                          <li className={this.props.user ? "dropdown bttn logout" : 'hide'} onClick={this.logout}>
                             <span> Logout </span>
                           </li>
                         </ul>
@@ -46,7 +52,7 @@ export class Header extends Component {
 }
 
 const mapStateToProps = (state) => ({
-
+  user: state.auth.user
 })
 
 const mapDispatchToProps = {

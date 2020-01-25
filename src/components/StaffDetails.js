@@ -13,7 +13,11 @@ export class StaffDetails extends Component {
   }
   componentDidMount() {
     const staffId = this.props.match.params['id'];
-    this.props.fetchStaffDetails(staffId);
+    if(localStorage.getItem('userToken') && localStorage.getItem('userId')) {
+      this.props.fetchStaffDetails(staffId);
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
   back = () => {

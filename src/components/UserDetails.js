@@ -14,7 +14,11 @@ export class UserDetails extends Component {
 
   componentDidMount() {
     const userId = this.props.match.params['id'];
-    this.props.fetchUserDetails(userId);
+    if (localStorage.getItem('userToken') && localStorage.getItem('userId')) {
+      this.props.fetchUserDetails(userId);
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
   back = () => {

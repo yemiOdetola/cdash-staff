@@ -15,7 +15,11 @@ export class Landing extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchAssetsContainers();
+    if(localStorage.getItem('userToken') && localStorage.getItem('userId')) {
+      this.props.fetchAssetsContainers();
+    } else {
+      this.props.history.push('/login');
+    }
   }
   render() {
     let assetsContainers = [];

@@ -209,3 +209,31 @@ section {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
+
+.menu-horizontal {
+  display: flex;
+  justify-content: flex-end;
+  .bttn {
+    margin-right: 1.25rem;
+  }
+}
+.dropdown.bttn {
+  color: #fff;
+  border-radius: 0.25rem;
+  width: 60px;
+  height: 26px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.875rem;
+  a, span {
+    color: #fff;
+    font-weight: 500;
+    opacity: 1 !important;
+  }
+  &.logout {
+    background: rgb(241, 64, 58);
+  }
+  &.login {
+    background: rgb(24, 231, 152);
+  }
+}

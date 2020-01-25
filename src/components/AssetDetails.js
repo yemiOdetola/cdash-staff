@@ -16,7 +16,11 @@ export class AssetDetails extends Component {
   }
   componentDidMount() {
     const assetId = this.props.match.params['id'];
-    this.props.fetchAssets(assetId);
+    if(localStorage.getItem('userToken') && localStorage.getItem('userId')) {
+      this.props.fetchAssets(assetId);
+    } else {
+      this.props.history.push('/login');
+    }
   }
   back = () => {
     this.props.history.go(-1);
