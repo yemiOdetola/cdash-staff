@@ -7,8 +7,8 @@ import Footer from './layouts/Footer';
 import { fetchUsers } from '../actions/auth';
 
 export class Users extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       loading: true
     }

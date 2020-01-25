@@ -1,0 +1,74 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Header from './layouts/Header';
+import Footer from './layouts/Footer';
+import globals from '../globals';
+import { fetchStaffs } from '../actions/auth';
+
+export class Staffs extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true
+    }
+  }
+  componentDidMount() {
+    this.props.fetchStaffs();
+  }
+
+  render() {
+    let table = [];
+    if (this.props.staffs[0]) {
+      this.props.staffs[0].forEach((staff, i) => {
+        table.push(
+          <tr key={i}>
+            <td>{globals.capitalize(staff.name)}</td>
+            <td>{staff.email || 'n/A'}</td>
+            <td>{staff.tel || 'n/A'}</td>
+            <td>{staff.position || 'n/A'}</td>
+            <td>{globals.formatDate(staff.date_joined) || 'n/A'}</td>
+            <td>
+              <Link to={`/staffs/staff-data/${staff._id}`}>View</Link>
+            </td>
+          </tr>
+        )
+      })
+    }
+    return (
+      <>
+      <div className={'data-loading'}>
+        <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.staffs.length ? 'loader-img' : 'hide'} alt="+" />
+      </div>
+      <Header />
+      <section className="table-toppings">
+        <h1 className="text-center component-header mb-5">Staffs</h1>
+        <div className="tbl-header">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Position</th>
+                <th>Date joined</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {table}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <Footer />
+    </>
+    )
+  }
+}
+
+const mapStateToProps = (state) => ({
+  staffs: state.auth.staffs
+})
+
+export default connect(mapStateToProps, {fetchStaffs})(Staffs)

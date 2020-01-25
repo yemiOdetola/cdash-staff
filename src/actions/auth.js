@@ -1,4 +1,4 @@
-import { LOGIN, FETCH_USERS, FETCH_USERS_DETAILS, CLEAR } from '../constants';
+import { LOGIN, FETCH_USERS, FETCH_STAFFS, FETCH_USERS_DETAILS, FETCH_STAFF_DETAILS, CLEAR } from '../constants';
 import axios from 'axios';
 import globals from '../globals';
 
@@ -17,6 +17,32 @@ export function login(props, payload) {
         localStorage.setItem('userToken', res.data.user_token);
         dispatch(loginUser(res.data));
         props.history.push("/");
+      })
+      .catch(error => {
+        console.log('catch error register', error);
+        throw (error);
+      })
+  }
+}
+
+export function fetchStaffs() {
+  const userToken = localStorage.getItem('userToken');
+  return dispatch => {
+    dispatch(clearAuth(''))
+    axios.get(`${globals.base_url}/staff`, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          const msg = response.data.msg || 'Please reload page.';
+          globals.createToast(msg, 3000, 'bottom-right');
+          return console.log(response, 'fetch users not successful');
+        }
+        let res = response.data;
+        console.log('staffs', res.data);
+        dispatch(staffs(res.data));
       })
       .catch(error => {
         console.log('catch error register', error);
@@ -79,6 +105,32 @@ export function fetchUserDetails(id) {
   }
 }
 
+export function fetchStaffDetails(id) {
+  const userToken = localStorage.getItem('userToken');
+  return dispatch => {
+    dispatch(clearAuth(''))
+    axios.get(`${globals.base_url}/staff/${id}`, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          const msg = response.data.msg || 'Please reload page.';
+          globals.createToast(msg, 3000, 'bottom-right');
+          return console.log(response, 'fetch users not successful');
+        }
+        let res = response.data;
+        console.log('staff details', res.data);
+        dispatch(staffDetails(res.data));
+      })
+      .catch(error => {
+        console.log('catch error register', error);
+        throw (error);
+      })
+  }
+}
+
 function loginUser(data) {
   return {
     type: LOGIN,
@@ -93,9 +145,23 @@ function users(data) {
   }
 }
 
+function staffs(data) {
+  return {
+    type: FETCH_STAFFS,
+    payload: data
+  }
+}
+
 function userDetails(data) {
   return {
     type: FETCH_USERS_DETAILS,
+    payload: data
+  }
+}
+
+function staffDetails(data) {
+  return {
+    type: FETCH_STAFF_DETAILS,
     payload: data
   }
 }

@@ -1,8 +1,9 @@
-import { LOGIN, FETCH_USERS, FETCH_USERS_DETAILS, CLEAR } from '../constants';
+import { LOGIN, FETCH_USERS, FETCH_USERS_DETAILS, FETCH_STAFF_DETAILS, CLEAR, FETCH_STAFFS } from '../constants';
 
 const initialState = {
   user: {},
   userDetails: {},
+  staffDetails: {},
   users: [],
   staffs: []
 }
@@ -20,18 +21,32 @@ export default function auth(state = initialState, action) {
         ...state,
         users: [...state.users, action.payload]
       }
+      case FETCH_STAFFS:
+        return {
+          ...state,
+          staffs: [...state.staffs, action.payload]
+        }
     case FETCH_USERS_DETAILS:
       let userDetails = Object.assign({}, action.payload);
       return {
         ...state,
         userDetails: userDetails
       }
-    case CLEAR:
+      case FETCH_STAFF_DETAILS:
+      let staffDetails = Object.assign({}, action.payload);
       return {
         ...state,
-        user: {},
+        staffDetails: staffDetails
+      }
+    case CLEAR:
+      let details = {};
+      return {
+        ...state,
+        user: details,
         staffs: [],
-        users: []
+        users: [],
+        userDetails: details,
+        staffDetails: details
       }
     default:
       return state;
