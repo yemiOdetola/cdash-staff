@@ -108,6 +108,21 @@
   @media(min-width: 992px) {
     margin: 2.25rem 0 !important;
   }
+  a {
+    color: #333;
+    display: block;
+    img {
+      width: 3rem;
+      height: 3rem;
+      display: block;
+      margin: 0.5rem auto;
+    }
+    h4 {
+      font-weight: 300;
+      color: #888;
+      font-size: 1.25rem;
+    }
+  }
   .title {
     font-weight: 300;
     font-size: 1.5rem;
@@ -140,4 +155,8 @@
       font-size: 0.935rem;
     }
   }
+}
+
+.uppercase {
+  text-transform: uppercase;
 }

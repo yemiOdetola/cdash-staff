@@ -68,7 +68,6 @@ export function fetchAssetData(id) {
                   return console.log(response, 'fetch asset not successful');
               }
               let res = response.data;
-              console.log('response', res.data.cost.naira);
               dispatch(assetData(res.data));
           })
           .catch(error => {

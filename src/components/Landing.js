@@ -49,47 +49,29 @@ export class Landing extends Component {
               </section>
               <section className="text-center">
                 <div className="container">
-                  <div className="row">
+                  <div className="row mx-auto">
                     <div className="col-md-4 col-lg-2">
-                      <div className="text-block">
-                        <i className="icon icon--lg icon-Mail-3"></i>
-                        <h4>Regular Updates</h4>
-                        <p> direct to your inbox</p>
+                      <div className="text-block menu">
+                        <Link to="/staffs">
+                          <img src={require('../assets/images/staffs.svg')} className="menu-img" alt="staffs" />
+                          <h4>Staffs</h4>
+                        </Link>
                       </div>
                     </div>
                     <div className="col-md-4 col-lg-2">
-                      <div className="text-block">
-                        <i className="icon icon--lg icon-Mail-3"></i>
-                        <h4>Regular Updates</h4>
-                        <p> direct to your inbox</p>
+                      <div className="text-block menu">
+                        <Link to="/socials">
+                          <img src={require('../assets/images/socials.svg')} className="menu-img" alt="staffs" />
+                          <h4>Social media</h4>
+                        </Link>
                       </div>
                     </div>
                     <div className="col-md-4 col-lg-2">
-                      <div className="text-block">
-                        <i className="icon icon--lg icon-Mail-3"></i>
-                        <h4>Regular Updates</h4>
-                        <p> direct to your inbox</p>
-                      </div>
-                    </div>
-                    <div className="col-md-4 col-lg-2">
-                      <div className="text-block">
-                        <i className="icon icon--lg icon-Mail-3"></i>
-                        <h4>Regular Updates</h4>
-                        <p> direct to your inbox</p>
-                      </div>
-                    </div>
-                    <div className="col-md-4 col-lg-2">
-                      <div className="text-block">
-                        <i className="icon icon--lg icon-Mail-3"></i>
-                        <h4>Regular Updates</h4>
-                        <p> direct to your inbox</p>
-                      </div>
-                    </div>
-                    <div className="col-md-4 col-lg-2">
-                      <div className="text-block">
-                        <i className="icon icon--lg icon-Mail-3"></i>
-                        <h4>Regular Updates</h4>
-                        <p> direct to your inbox</p>
+                      <div className="text-block menu">
+                        <Link to="/users">
+                          <img src={require('../assets/images/users.svg')} className="menu-img" alt="staffs" />
+                          <h4>Users</h4>
+                        </Link>
                       </div>
                     </div>
                   </div>
