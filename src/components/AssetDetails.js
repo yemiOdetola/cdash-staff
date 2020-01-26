@@ -63,7 +63,7 @@ export class AssetDetails extends Component {
 
   fetchCapitalData = (payload) => {
     const userToken = localStorage.getItem('userToken');
-    axios.post(`${globals.base_url}/asset_data/count/recurring`, payload, {
+    axios.post(`${globals.base_url}/asset_data/count/capital`, payload, {
       headers: {
         'Authorization': 'Bearer ' + userToken
       }
@@ -187,7 +187,7 @@ export class AssetDetails extends Component {
           <div className="row">
             <div className="col-lg-4 col-md-6 col-sm-10 mx-auto">
               <Bar
-                height={250}
+                // height={250}
                 data={this.state.data}
                 options={this.chartOptions} />
               <div className="mt-4">
@@ -201,8 +201,8 @@ export class AssetDetails extends Component {
                 data={this.state.capData}
                 options={this.chartOptions} />
               <div className="mt-4">
-                <p>Capital expenditure($):  {this.state.recurring_dollar || 0}</p>
-                <p>Capital expenditure(₦): {this.state.recurring_naira || 0}</p>
+                <p>Capital expenditure($):  {this.state.capital_dollar || 0}</p>
+                <p>Capital expenditure(₦): {this.state.capital_naira || 0}</p>
               </div>
             </div>
           </div>

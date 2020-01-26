@@ -110,6 +110,11 @@
   @media(min-width: 992px) {
     margin: 2.25rem 0 !important;
   }
+  &.menu {
+    h4 {
+      margin-top: 0.75rem;
+    }
+  }
   a {
     color: #333;
     display: block;
