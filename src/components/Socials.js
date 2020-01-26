@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
-// import globals from '../globals';
+import globals from '../globals';
 import { fetchSocials } from '../actions/socials';
 
 export class Socials extends Component {
@@ -31,7 +31,7 @@ export class Socials extends Component {
       this.props.socials[0].forEach((social, i) => {
         table.push(
           <tr key={i}>
-            <td>{social.data.screen_name ? social.data.screen_name : social.data.name || social.data.username || (social.data.firstName + ' ' + social.data.lastName)}</td>
+            <td>{globals.trimTr(social.data.screen_name ? social.data.screen_name : social.data.name || social.data.username || (social.data.firstName + ' ' + social.data.lastName))}</td>
             <td>{social.type}</td>
             <td>
               <Link to={`/socials/social-data/${social._id}`}>View</Link>

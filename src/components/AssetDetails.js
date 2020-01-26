@@ -142,10 +142,10 @@ export class AssetDetails extends Component {
         table.push(
           <tr key={i}>
             <td>{asset.name}</td>
-            <td>{globals.trimSubtitle(asset.summary) || 'n/A'}</td>
+            {/* <td>{globals.trimSubtitle(asset.summary) || 'n/A'}</td> */}
             <td>{globals.formatDate(asset.date_acquired) || 'n/A'}</td>
-            <td>{asset.cost.naira || 'n/A'}</td>
-            <td>{asset.cost.dollar || 'n/A'}</td>
+            {/* <td>{asset.cost.naira || 'n/A'}</td>
+            <td>{asset.cost.dollar || 'n/A'}</td> */}
             <td>
               <Link to={`/asset-data/${asset._id}`}>View</Link>
             </td>
@@ -170,10 +170,7 @@ export class AssetDetails extends Component {
               <thead>
                 <tr>
                   <th>Asset Name</th>
-                  <th>Summary</th>
                   <th>Date acquired</th>
-                  <th>Acquisition cost (naira)</th>
-                  <th>Acquisition cost (dollar)</th>
                   <th></th>
                 </tr>
               </thead>
@@ -183,7 +180,7 @@ export class AssetDetails extends Component {
             </table>
           </div>
         </section>
-        <div className="expenditures">
+        {/* <div className="expenditures">
           <div className="row">
             <div className="col-lg-4 col-md-6 col-sm-10 mx-auto">
               <Bar
@@ -206,7 +203,7 @@ export class AssetDetails extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <Footer />
       </>
     )

@@ -33,9 +33,19 @@ const globals = {
     },
     trimSearch: function (str) {
         if (typeof str !== 'string' && str.length > 75) {
-            return;
+            return
         }
         let substr = str.substring(0, 75)
+        return `${substr} ...`
+    },
+    trimTr: function (str) {
+        if (typeof str !== 'string') {
+            return;
+        }
+        if(str.length < 45) {
+            return str;
+        }
+        let substr = str.substring(0, 45)
         return `${substr} ...`
     },
     getFirstChar: function (string) {

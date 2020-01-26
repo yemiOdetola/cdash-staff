@@ -31,11 +31,11 @@ export class Staffs extends Component {
       this.props.staffs[0].forEach((staff, i) => {
         table.push(
           <tr key={i}>
-            <td>{globals.capitalize(staff.name)}</td>
-            <td>{staff.email || 'n/A'}</td>
-            <td>{staff.tel || 'n/A'}</td>
-            <td>{staff.position || 'n/A'}</td>
-            <td>{globals.formatDate(staff.date_joined) || 'n/A'}</td>
+            <td>{globals.trimTr(staff.name)}</td>
+            {/* <td>{staff.email || 'n/A'}</td>
+            <td>{staff.tel || 'n/A'}</td> */}
+            <td>{globals.trimTr(staff.position) || 'n/A'}</td>
+            {/* <td>{globals.formatDate(staff.date_joined) || 'n/A'}</td> */}
             <td>
               <Link to={`/staffs/staff-data/${staff._id}`}>View</Link>
             </td>
@@ -60,10 +60,10 @@ export class Staffs extends Component {
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone number</th>
+                  {/* <th>Email</th>
+                  <th>Phone number</th> */}
                   <th>Position</th>
-                  <th>Date joined</th>
+                  {/* <th>Date joined</th> */}
                   <th></th>
                 </tr>
               </thead>

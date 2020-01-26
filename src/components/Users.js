@@ -30,8 +30,8 @@ export class Users extends Component {
       this.props.users[0].forEach((user, i) => {
         table.push(
           <tr key={i}>
-            <td>{user.name}</td>
-            <td>{user.email || 'n/A'}</td>
+            <td>{globals.trimTr(user.name)}</td>
+            {/* <td>{user.email || 'n/A'}</td> */}
             <td className="uppercase">{globals.capitalize(user.type) || 'n/A'}</td>
             <td>
               <Link to={`/users/user-data/${user._id}`}>View</Link>
@@ -57,7 +57,7 @@ export class Users extends Component {
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Email</th>
+                  {/* <th>Email</th> */}
                   <th>User type</th>
                   <th></th>
                 </tr>
