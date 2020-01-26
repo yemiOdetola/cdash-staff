@@ -187,7 +187,7 @@ export class AssetDetails extends Component {
           <div className="row">
             <div className="col-lg-4 col-md-6 col-sm-10 mx-auto">
               <Bar
-                // height={250}
+                height={250}
                 data={this.state.data}
                 options={this.chartOptions} />
               <div className="mt-4">
