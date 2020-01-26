@@ -9,18 +9,19 @@ import Footer from './layouts/Footer';
 import { fetchAssetsContainers } from '../actions/assets';
 
 
-export class RecurringExpenditure extends Component {
+export class CapitalExpenditure extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
       assetId: '',
-      year: '',
+      start_year: '',
+      end_year: '',
       showSelected: false,
-      recurring_dollar: 0,
-      recurring_naira: 0,
-      total_recurring_dollar: 0,
-      total_recurring_naira: 0,
+      capital_dollar: 0,
+      capital_naira: 0,
+      total_capital_dollar: 0,
+      total_capital_naira: 0,
       data: { datasets: [], labels: [] },
     }
   }
@@ -54,9 +55,10 @@ export class RecurringExpenditure extends Component {
       this.props.fetchAssetsContainers();
       const payload = {
         id: this.state.assetId,
-        year: this.state.year
+        start_year: this.state.start_year,
+        end_year: this.state.end_year
       }
-      this.initRecurringData(payload);
+      this.initCapitalData(payload);
     } else {
       this.props.history.push('/login');
     }
@@ -71,16 +73,17 @@ export class RecurringExpenditure extends Component {
   submitForm = (e) => {
     e.preventDefault();
     globals.createToast('Please wait', 1000, 'bottom-right');
-    let payload = {
+    const payload = {
       id: this.state.assetId,
-      year: this.state.year,
+      start_year: this.state.start_year,
+      end_year: this.state.end_year
     }
-    this.generateRecurringData(payload);
+    this.generateCapitalData(payload);
   }
 
-  initRecurringData = (payload) => {
+  initCapitalData = (payload) => {
     const userToken = localStorage.getItem('userToken');
-    axios.post(`${globals.base_url}/asset_data/count/recurring`, payload, {
+    axios.post(`${globals.base_url}/asset_data/count/capital`, payload, {
       headers: {
         'Authorization': 'Bearer ' + userToken
       }
@@ -95,7 +98,7 @@ export class RecurringExpenditure extends Component {
         let data = {
           labels: ["total amount($)", "total amount(₦)"],
           datasets: [{
-            label: "Recurring expenditure",
+            label: "Capital expenditure",
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: [res.total_amount_dollar, res.total_amount_naira]
@@ -103,8 +106,8 @@ export class RecurringExpenditure extends Component {
         }
         this.setState({
           data: data,
-          total_recurring_dollar: res.total_amount_dollar,
-          total_recurring_naira: res.total_amount_naira
+          total_capital_dollar: res.total_amount_dollar,
+          total_capital_naira: res.total_amount_naira
         })
       })
       .catch(error => {
@@ -113,13 +116,13 @@ export class RecurringExpenditure extends Component {
       })
   }
 
-  generateRecurringData = (payload) => {
+  generateCapitalData = (payload) => {
     this.setState({
       showSelected: true,
       loading: true
     })
     const userToken = localStorage.getItem('userToken');
-    axios.post(`${globals.base_url}/asset_data/count/recurring`, payload, {
+    axios.post(`${globals.base_url}/asset_data/count/capital`, payload, {
       headers: {
         'Authorization': 'Bearer ' + userToken
       }
@@ -134,7 +137,7 @@ export class RecurringExpenditure extends Component {
         let data = {
           labels: ['total amount($)', 'total amount(₦)', 'Selected asset(₦)', 'Selected asset($)'],
           datasets: [{
-            label: "Recurring expenditure",
+            label: "Capital expenditure",
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: [res['total_amount_dollar'], res['total_amount_naira'], res['amount_naira'], res['amount_dollar']]
@@ -143,10 +146,10 @@ export class RecurringExpenditure extends Component {
         this.setState({
           loading: false,
           data: data,
-          total_recurring_dollar: res.total_amount_dollar,
-          total_recurring_naira: res.total_amount_naira,
-          recurring_dollar: res.amount_dollar,
-          recurring_naira: res.amount_naira
+          total_capital_dollar: res.total_amount_dollar,
+          total_capital_naira: res.total_amount_naira,
+          capital_dollar: res.amount_dollar,
+          capital_naira: res.amount_naira
         })
 
       })
@@ -212,7 +215,7 @@ export class RecurringExpenditure extends Component {
             <div className="col-xl-9 mx-auto mx-auto">
               <form onSubmit={this.onSubmit} className="chart-form">
                 <div className="row">
-                  <div className="col-lg-7">
+                  <div className="col-lg-6">
                     <div className="form-item">
                       <label htmlFor="assetId">Assets</label>
                       <select onChange={e => this.handleChange("assetId", e.target.value)}>
@@ -221,29 +224,37 @@ export class RecurringExpenditure extends Component {
                       </select>
                     </div>
                   </div>
-                  <div className="col-lg-3">
+                  <div className="col-lg-2">
                     <div className="form-item">
-                      <label htmlFor="year">Select year</label>
-                      <select onChange={e => this.handleChange("year", e.target.value)}>
+                      <label htmlFor="start_year">Start year</label>
+                      <select onChange={e => this.handleChange("start_year", e.target.value)}>
                         <option value="">All years</option>
                         {yearOptions}
                       </select>
                     </div>
                   </div>
                   <div className="col-lg-2">
-                  <button className="submit-btn" onClick={this.submitForm}>Submit</button>
+                    <div className="form-item">
+                      <label htmlFor="end_year">End year</label>
+                      <select onChange={e => this.handleChange("end_year", e.target.value)}>
+                        <option value="">All years</option>
+                        {yearOptions}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-lg-2">
+                    <button className="submit-btn" onClick={this.submitForm}>Submit</button>
                   </div>
                 </div>
               </form>
               <Bar
-                height={130}
                 data={this.state.data}
                 options={this.chartOptions} />
               <div className="mt-4">
-                <p className="chart-data">Total recurring expenditure($):  {this.state.total_recurring_dollar}</p>
-                <p className="chart-data">Total recurring expenditure(₦): {this.state.total_recurring_naira}</p>
-                <p className={this.state.showSelected ? 'chart-data' : 'hide'}>Selected asset's recurring expenditure ($):  {this.state.recurring_dollar}</p>
-                <p className={this.state.showSelected ? 'chart-data' : 'hide'}>Selected asset's recurring expenditure(₦): {this.state.recurring_naira}</p>
+                <p className="chart-data">Total recurring expenditure($):  {this.state.total_capital_dollar}</p>
+                <p className="chart-data">Total recurring expenditure(₦): {this.state.total_capital_naira}</p>
+                <p className={this.state.showSelected ? 'chart-data' : 'hide'}>Selected asset's recurring expenditure ($):  {this.state.capital_dollar}</p>
+                <p className={this.state.showSelected ? 'chart-data' : 'hide'}>Selected asset's recurring expenditure(₦): {this.state.capital_naira}</p>
               </div>
             </div>
           </div>
@@ -260,4 +271,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, { fetchAssetsContainers })(RecurringExpenditure)
+export default connect(mapStateToProps, { fetchAssetsContainers })(CapitalExpenditure)

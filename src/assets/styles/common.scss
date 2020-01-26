@@ -272,16 +272,15 @@ section {
 }
 
 form.chart-form {
-  display: flex;
-  width: 92%;
-  flex-wrap: wrap;
-  margin: auto;
   margin-bottom: 3rem;
-  @media(min-width: 992px) {
-    width: 90%;
+  .form-item {
+    label {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+    }
   }
   select {
-    width: 40%;
     margin: 0 1rem;
     height: 35px;
   }
@@ -294,5 +293,11 @@ form.chart-form {
     font-size: 0.875rem;
     border: none;
     border-radius: 0.25rem;
+    position: relative;
+    top: 2rem;
+    @media(max-width: 767px) {
+      top: 1rem;
+      left: 1rem;
+    }
   }
 }

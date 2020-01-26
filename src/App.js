@@ -12,6 +12,7 @@ import SocialDetails  from './components/SocialDetails';
 import ExpensesTurnover from './components/ExpensesTurnover';
 import Socials from './components/Socials';
 import RecurringExpenditure from './components/RecurringExpenditure';
+import CapitalExpenditure from './components/CapitalExpenditure';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path='/login' component={Login} />
       <Route path='/expenses-turnover' component={ExpensesTurnover} />
       <Route path='/recurring-expenditure' component={RecurringExpenditure} />
+      <Route path='/capital-expenditure' component={CapitalExpenditure} />
       <Route path='/users/user-data/:id' component={UserDetails} />
       <Route path='/users' component={Users} />
       <Route path='/socials/social-data/:id' component={SocialDetails} />
