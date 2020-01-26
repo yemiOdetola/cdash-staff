@@ -54,7 +54,7 @@ export class Landing extends Component {
               <section className="text-center">
                 <div className="container">
                   <div className="row mx-auto">
-                    <div className="col-md-3 col-lg-2">
+                    <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/staffs">
                           <img src={require('../assets/images/staffs.svg')} className="menu-img" alt="staffs" />
@@ -62,7 +62,7 @@ export class Landing extends Component {
                         </Link>
                       </div>
                     </div>
-                    <div className="col-md-3 col-lg-2">
+                    <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/socials">
                           <img src={require('../assets/images/socials.svg')} className="menu-img" alt="staffs" />
@@ -70,7 +70,7 @@ export class Landing extends Component {
                         </Link>
                       </div>
                     </div>
-                    <div className="col-md-3 col-lg-2">
+                    <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/users">
                           <img src={require('../assets/images/users.svg')} className="menu-img" alt="staffs" />
@@ -78,11 +78,27 @@ export class Landing extends Component {
                         </Link>
                       </div>
                     </div>
-                    <div className="col-md-3 col-lg-2">
+                    <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/expenses-turnover">
                           <img src={require('../assets/images/turnover.svg')} className="menu-img" alt="staffs" />
                           <h4>Expenses/Turnover</h4>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="col-md-2 col-lg-2">
+                      <div className="text-block menu">
+                        <Link to="/recurring-expenditure">
+                          <img src={require('../assets/images/recurring.svg')} className="menu-img" alt="staffs" />
+                          <h4>Recurring expenditure</h4>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="col-md-2 col-lg-2">
+                      <div className="text-block menu">
+                        <Link to="/capital-expenditure">
+                          <img src={require('../assets/images/capital.svg')} className="menu-img" alt="staffs" />
+                          <h4>Capital expenditure</h4>
                         </Link>
                       </div>
                     </div>

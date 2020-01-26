@@ -259,3 +259,40 @@ section {
     }
   }
 }
+
+.text-block.menu{
+  h4 {
+    font-size: 1rem;
+    font-weight: 500;;
+  }
+}
+
+.chart-data {
+  font-weight: 500;
+}
+
+form.chart-form {
+  display: flex;
+  width: 92%;
+  flex-wrap: wrap;
+  margin: auto;
+  margin-bottom: 3rem;
+  @media(min-width: 992px) {
+    width: 90%;
+  }
+  select {
+    width: 40%;
+    margin: 0 1rem;
+    height: 35px;
+  }
+  button {
+    width: 70px;
+    background: rgb(0, 201, 84);
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 35px;
+    font-size: 0.875rem;
+    border: none;
+    border-radius: 0.25rem;
+  }
+}
