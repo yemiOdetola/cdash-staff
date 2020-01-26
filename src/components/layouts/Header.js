@@ -10,7 +10,7 @@ export class Header extends Component {
   logout = () => {
     localStorage.setItem('userToken', '');
     localStorage.setItem('userId', '');
-    this.props.history.push('/login');
+    window.location.reload();
   }
   render() {
     return (
@@ -31,10 +31,10 @@ export class Header extends Component {
                     <div className="ml-auto">
                       <div className="bar__module">
                         <ul className="menu-horizontal">
-                          <li className={!this.props.user ? "dropdown bttn login" : 'hide'}>
+                          <li className={!this.props.user ? "dropdown bttn login" : 'visibility-hidden'}>
                             <Link to="/login"> Login </Link>
                           </li>
-                          <li className={this.props.user ? "dropdown bttn logout" : 'hide'} onClick={this.logout}>
+                          <li className={this.props.user ? "dropdown bttn logout" : 'visibility-hidden'} onClick={this.logout}>
                             <span> Logout </span>
                           </li>
                         </ul>

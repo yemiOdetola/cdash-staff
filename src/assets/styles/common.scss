@@ -42,7 +42,9 @@
     }
   }
 }
-
+.visibility-hidden {
+  visibility: hidden;
+}
 .component-header {
   text-align: center;
   font-size: 1.5rem;
@@ -154,13 +156,16 @@
   }
   .icon {
     display: block;
-    margin: 1rem;
+    margin: 1rem 0;
     width: 70px;
     height: 70px;
     border-radius: 50%;
   }
   .date {
     font-size: 0.875rem;
+    @media(max-width: 767px) {
+      text-align: center;
+    }
   }
 }
 
@@ -221,7 +226,7 @@ section {
   color: #fff;
   border-radius: 0.25rem;
   width: 60px;
-  height: 26px;
+  height: 25px;
   text-align: center;
   font-weight: 500;
   font-size: 0.875rem;
@@ -235,5 +240,17 @@ section {
   }
   &.login {
     background: rgb(24, 231, 152);
+  }
+}
+.expenditures {
+  padding: 1.5rem;
+  p {
+    font-size: 0.935rem;
+    margin-bottom: 0.5rem;
+  }
+  .capital {
+    @media(max-width: 767px) {
+      margin-top: 5rem;
+    }
   }
 }

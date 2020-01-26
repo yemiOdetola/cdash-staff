@@ -1,4 +1,4 @@
-import { FETCH_ASSETS_CONTAINERS, ASSETS, ASSET_DATA, CLEAR } from '../constants';
+import { FETCH_ASSETS_CONTAINERS, RECURRING_DATA, ASSETS, ASSET_DATA, CLEAR } from '../constants';
 import axios from 'axios';
 import globals from '../globals';
 
@@ -53,6 +53,33 @@ export function fetchAssets(id) {
   }
 }
 
+
+export function fetchRecurringData(payload) {
+  const userToken = localStorage.getItem('userToken');
+  return dispatch => {
+    dispatch(clearAssets(''))
+      axios.post(`${globals.base_url}/asset_data/count/recurring`, payload, {
+          headers: {
+              'Authorization': 'Bearer ' + userToken
+          }
+      })
+          .then(response => {
+              if (response.data.status === false) {
+                  const msg = response.data.msg || 'Please reload page.';
+                  globals.createToast(msg, 3000, 'bottom-right');
+                  return console.log(response, 'fetch asset not successful');
+              }
+              let res = response.data;
+              console.log('response', res);
+              dispatch(reccuringData(res));
+          })
+          .catch(error => {
+              console.log('catch error register', error);
+              throw (error);
+          })
+  }
+}
+
 export function fetchAssetData(id) {
   const userToken = localStorage.getItem('userToken');
   return dispatch => {
@@ -89,6 +116,13 @@ function assetsContainers(data) {
 function assets(data) {
   return {
     type: ASSETS,
+    payload: data
+  };
+}
+
+function reccuringData(data) {
+  return {
+    type: RECURRING_DATA,
     payload: data
   };
 }

@@ -1,22 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import globals from '../globals';
-// import { Link } from 'react-router-dom';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
-import { fetchAssetData } from '../actions/assets';
+import { fetchAssetData, fetchRecurringData } from '../actions/assets';
 
 
 export class AssetData extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
+      loading: true,
+      recurring_dollar: 0,
+      recurring_naira: 0,
+      data: { datasets:[], labels:[] }
     }
   }
+  chartOptions = {
+    scales: {
+      xAxes: [{
+        barThickness: 20,
+        maxBarThickness: 26,
+        gridLines: {
+          display: true,
+          color: '#ffffff'
+        }
+      }],
+      yAxes: [{
+        gridLines: {
+          display: true,
+          ticks: true
+        }
+      }],
+    },
+  };
+
   componentDidMount() {
     const assetId = this.props.match.params['id'];
-    if(localStorage.getItem('userToken') && localStorage.getItem('userId')) {
+    if (localStorage.getItem('userToken') && localStorage.getItem('userId')) {
       this.props.fetchAssetData(assetId);
     } else {
       this.props.history.push('/login');
@@ -27,6 +48,9 @@ export class AssetData extends Component {
     this.props.history.go(-1);
   }
   render() {
+    if (this.props.recurring_data) {
+      this.data = [this.props.recurring_data.total_amount_naira, this.props.recurring_data.total_amount_dollar];
+    }
     return (
       <>
         <div className={'data-loading'}>
@@ -115,8 +139,9 @@ export class AssetData extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  asset_data: state.assets.asset_data
+  asset_data: state.assets.asset_data,
+  recurring_data: state.assets.recurring_data
 })
 
 
-export default connect(mapStateToProps, { fetchAssetData })(AssetData)
+export default connect(mapStateToProps, { fetchAssetData, fetchRecurringData })(AssetData)
