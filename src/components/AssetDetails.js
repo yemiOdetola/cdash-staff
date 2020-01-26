@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import globals from '../globals';
 import axios from 'axios';
-import { Bar } from 'react-chartjs-2';
+// import { Bar } from 'react-chartjs-2';
 import { Link } from 'react-router-dom';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
