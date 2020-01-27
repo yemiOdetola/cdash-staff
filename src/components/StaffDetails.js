@@ -71,6 +71,10 @@ export class StaffDetails extends Component {
                       <h4>Salary</h4>
                       <p className="uppercase">{this.props.staffDetails.salary}</p>
                     </div>
+                    <div className={this.props.staffDetails.experiences ? "text-block" : 'hide'}>
+                      <h4>Experiences</h4>
+                      <p className="uppercase">{this.props.staffDetails.experiences}</p>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { CLEAR, ASSETS_COUNT, STAFFS_COUNT, AVG_SCORE, USERS_COUNT } from '../constants';
+import { CLEAR, ASSETS_COUNT, STAFFS_COUNT, AVG_SCORE, USERS_COUNT, FETCH_MATURITY } from '../constants';
 import axios from 'axios';
 import globals from '../globals';
 
@@ -103,6 +103,33 @@ export function avgCount() {
   }
 }
 
+export function fetchScores() {
+  const userToken = localStorage.getItem('userToken');
+  return dispatch => {
+    dispatch(clearSummary(''))
+    axios.get(`${globals.base_url}/maturity`, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      },
+      params: {
+        skip: 0,
+        count: 999
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          return console.log(response, 'fetch users not successful');
+        }
+        let res = response.data;
+        console.log('maturity count', res.data);
+        dispatch(maturity(res.data));
+      })
+      .catch(error => {
+        console.log('catch error socials', error);
+        throw (error);
+      })
+  }
+}
 
 function assets(data) {
   return {
@@ -131,6 +158,14 @@ function avgscore(data) {
     payload: data
   }
 }
+
+function maturity(data) {
+  return {
+    type: FETCH_MATURITY,
+    payload: data
+  }
+}
+
 
 function clearSummary(data) {
   return {

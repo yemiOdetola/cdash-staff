@@ -1,10 +1,11 @@
-import { CLEAR, ASSETS_COUNT, STAFFS_COUNT, AVG_SCORE, USERS_COUNT } from '../constants';
+import { CLEAR, ASSETS_COUNT, STAFFS_COUNT, AVG_SCORE, USERS_COUNT, FETCH_MATURITY } from '../constants';
 
 const initialState = {
   assets: '',
   staffs: '',
   users: '',
   avgScore: '',
+  maturity: []
 }
 
 export default function summary(state = initialState, action) {
@@ -30,6 +31,11 @@ export default function summary(state = initialState, action) {
         ...state,
         avgScore: action.payload
       }
+      case FETCH_MATURITY:
+        return {
+          ...state,
+          maturity: [...state.maturity, action.payload]
+        }
     case CLEAR:
       return {
         ...state,
@@ -37,6 +43,7 @@ export default function summary(state = initialState, action) {
         users: '',
         assets: '',
         avgScore: '',
+        maturity: []
       }
     default:
       return state;

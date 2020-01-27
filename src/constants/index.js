@@ -15,3 +15,4 @@ export const ASSETS_COUNT = 'ASSETS_COUNT';
 export const STAFFS_COUNT = 'STAFFS_COUNT';
 export const USERS_COUNT = 'USERS_COUNT';
 export const AVG_SCORE = 'AVG_SCORE';
+export const FETCH_MATURITY = 'FETCH_MATURITY';
