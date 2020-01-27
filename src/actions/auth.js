@@ -1,4 +1,4 @@
-import { LOGIN, FETCH_USERS, FETCH_STAFFS, FETCH_USERS_DETAILS, FETCH_STAFF_DETAILS, CLEAR } from '../constants';
+import { LOGIN, FETCH_USERS, FETCH_STAFFS, FETCH_USERS_DETAILS, FETCH_STAFF_DETAILS, ORG_DETAILS, CLEAR } from '../constants';
 import axios from 'axios';
 import globals from '../globals';
 
@@ -42,6 +42,32 @@ export function fetchStaffs() {
         let res = response.data;
         console.log('staffs', res.data);
         dispatch(staffs(res.data));
+      })
+      .catch(error => {
+        console.log('catch error register', error);
+        throw (error);
+      })
+  }
+}
+
+export function getOrgdetails() {
+  const userToken = localStorage.getItem('userToken');
+  return dispatch => {
+    dispatch(clearAuth(''))
+    axios.get(`${globals.base_url}/organization`, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          const msg = response.data.msg || 'Please reload page.';
+          globals.createToast(msg, 3000, 'bottom-right');
+          return console.log(response, 'fetch users not successful');
+        }
+        let res = response.data;
+        console.log('orgdetails', res.data);
+        dispatch(orgDetails(res.data));
       })
       .catch(error => {
         console.log('catch error register', error);
@@ -161,6 +187,13 @@ function userDetails(data) {
 function staffDetails(data) {
   return {
     type: FETCH_STAFF_DETAILS,
+    payload: data
+  }
+}
+
+function orgDetails(data) {
+  return {
+    type: ORG_DETAILS,
     payload: data
   }
 }

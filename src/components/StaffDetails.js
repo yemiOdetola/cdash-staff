@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import globals from '../globals';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
 import { fetchStaffDetails } from '../actions/auth';
@@ -59,9 +60,17 @@ export class StaffDetails extends Component {
                       <h4>Phone number</h4>
                       <p><a href={`tel:${this.props.staffDetails.tel}`}>{this.props.staffDetails.tel}</a></p>
                     </div>
+                    <div className={this.props.staffDetails.date_joined ? "text-block" : 'hide'}>
+                      <h4>Date joined</h4>
+                      <p className="uppercase">{globals.formatDate(this.props.staffDetails.date_joined)}</p>
+                    </div>
                     <div className={this.props.staffDetails.position ? "text-block" : 'hide'}>
                       <h4>Position</h4>
                       <p className="uppercase">{this.props.staffDetails.position}</p>
+                    </div>
+                    <div className={this.props.staffDetails.summary ? "text-block" : 'hide'}>
+                      <h4>Summary</h4>
+                      <p className="uppercase">{this.props.staffDetails.summary}</p>
                     </div>
                     <div className={this.props.staffDetails.alignment_score ? "text-block" : 'hide'}>
                       <h4>Alignment score</h4>
