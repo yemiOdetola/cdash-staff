@@ -368,3 +368,22 @@ form.chart-form {
 .bar .logo {
   max-height: 3rem !important;
 }
+
+.next-prev {
+  width: 100%;
+  margin: 2.5rem 0;
+  text-align: right;
+  .bttn {
+    width: 70px;
+    height: 28px;
+    border: none;
+    border: 1px solid #777;
+    color: #333;
+    font-weight: 500;
+    margin: 0 1rem;
+    border-radius: 0.25rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

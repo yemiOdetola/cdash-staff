@@ -42,13 +42,9 @@ export class Logs extends Component {
 
   fetchLogs = () => {
     const userToken = localStorage.getItem('userToken');
-    axios.get(`${globals.base_url}/logs`, {
+    axios.get(`${globals.base_url}/logs/day`, {
       headers: {
         'Authorization': 'Bearer ' + userToken
-      },
-      params: {
-        skip: 0,
-        count: 999
       }
     })
       .then(response => {
@@ -111,7 +107,7 @@ export class Logs extends Component {
         <div className="expenditures">
           <div className="row">
             <div className="col-xl-9 mx-auto mx-auto">
-          <h1 className="text-center component-header mb-2">Logs</h1>
+          <h1 className="text-center component-header mb-2">Today's log</h1>
               <Line
                 data={this.state.data}
                 options={this.chartOptions} />

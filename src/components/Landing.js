@@ -15,7 +15,7 @@ export class Landing extends Component {
   }
 
   componentDidMount() {
-    if(localStorage.getItem('userToken') && localStorage.getItem('userId')) {
+    if (localStorage.getItem('userToken') && localStorage.getItem('userId')) {
       this.props.fetchAssetsContainers();
     } else {
       this.props.history.push('/login');
@@ -47,37 +47,61 @@ export class Landing extends Component {
                 <div className="col-md-12">
                   <h1 className="component-header">Assets</h1>
                   <div className="assets">
-                    {assetsContainers}
+                    <div className="each-asset">
+                      <h3 className="title">Hardware</h3>
+                      <Link to={`/asset-details/Hardware`}>View details</Link>
+                    </div>
+                    <div className="each-asset">
+                      <h3 className="title">Software</h3>
+                      <Link to={`/asset-details/Software`}>View details</Link>
+                    </div>
+                    <div className="each-asset">
+                      <h3 className="title">Connectivity</h3>
+                      <Link to={`/asset-details/Connectivity`}>View details</Link>
+                    </div>
+                    <div className="each-asset">
+                      <h3 className="title">Others</h3>
+                      <Link to={`/asset-details/Others`}>View details</Link>
+                    </div>
+                    <div className="each-asset">
+                      <h3 className="title">Staffs</h3>
+                      <Link to={`/staffs`}>View details</Link>
+                    </div>
+                    <div className="each-asset">
+                      <h3 className="title">Social media</h3>
+                      <Link to={`/socials`}>View details</Link>
+                    </div>
+                    {/* {assetsContainers} */}
                   </div>
                 </div>
               </section>
               <section className="text-center">
                 <div className="container">
                   <div className="row mx-auto">
-                    <div className="col-md-2 col-lg-2">
+                    {/* <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/staffs">
                           <img src={require('../assets/images/staffs.svg')} className="menu-img" alt="staffs" />
                           <h4>Staffs</h4>
                         </Link>
                       </div>
-                    </div>
-                    <div className="col-md-2 col-lg-2">
+                    </div> */}
+                    {/* <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/socials">
                           <img src={require('../assets/images/socials.svg')} className="menu-img" alt="staffs" />
                           <h4>Social media</h4>
                         </Link>
                       </div>
-                    </div>
-                    <div className="col-md-2 col-lg-2">
+                    </div> */}
+                    {/* <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/users">
                           <img src={require('../assets/images/users.svg')} className="menu-img" alt="staffs" />
                           <h4>Users</h4>
                         </Link>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/expenses-turnover">

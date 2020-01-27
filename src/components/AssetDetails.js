@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import globals from '../globals';
-import axios from 'axios';
-// import { Bar } from 'react-chartjs-2';
 import { Link } from 'react-router-dom';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
-import { fetchAssets } from '../actions/assets';
+import { fetchAssetsAll } from '../actions/assets';
 
 
 export class AssetDetails extends Component {
@@ -14,14 +12,14 @@ export class AssetDetails extends Component {
     super(props);
     this.state = {
       loading: true,
-      recurring_dollar: 0,
-      recurring_naira: 0,
-      capital_dollar: 0,
-      capital_naira: 0,
-      data: { datasets: [], labels: [] },
-      capData: { datasets: [], labels: [] }
+      pageIndex: 0,
+      limit: 10,
+      disablePrev: true,
+      disableNext: false
     }
   }
+  disablePrev = true;
+  disableNext = false;
   chartOptions = {
     scales: {
       xAxes: [{
@@ -42,93 +40,47 @@ export class AssetDetails extends Component {
   };
 
   componentDidMount() {
-    const assetId = this.props.match.params['id'];
+    const assetType = this.props.match.params['id'];
     if (localStorage.getItem('userToken') && localStorage.getItem('userId')) {
-      this.props.fetchAssets(assetId);
-      const capPayload = {
-        id: assetId,
-        start_year: '',
-        end_year: ''
-      }
-      const payload = {
-        id: assetId,
-        year: ''
-      }
-      this.fetchRecurringData(payload);
-      this.fetchCapitalData(capPayload)
+      let skip = this.state.pageIndex * this.state.limit;
+      this.setState({
+        type: assetType
+      })
+      this.props.fetchAssetsAll(assetType, skip, this.state.limit);
     } else {
       this.props.history.push('/login');
     }
   }
 
-  fetchCapitalData = (payload) => {
-    const userToken = localStorage.getItem('userToken');
-    axios.post(`${globals.base_url}/asset_data/count/capital`, payload, {
-      headers: {
-        'Authorization': 'Bearer ' + userToken
-      }
-    })
-      .then(response => {
-        if (response.data.status === false) {
-          const msg = response.data.msg || 'Please reload page.';
-          globals.createToast(msg, 3000, 'bottom-right');
-          return console.log(response, 'fetch asset not successful');
-        }
-        let res = response.data;
-        let data = {
-          labels: ["total amount($)", "total amount(₦)"],
-          datasets: [{
-            label: "Capital expenditure",
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [res.amount_dollar, res.amount_naira]
-          }]
-        }
-        this.setState({
-          capData: data,
-          capital_dollar: res.amount_dollar,
-          capital_naira: res.amount_naira
-        })
-      })
-      .catch(error => {
-        console.log('catch error register', error);
-        throw (error);
-      })
+  itemNav() {
+    if (((this.state.pageIndex * 10) + 10) >= this.props.assetsAll.length) {
+      this.disableNext = true;
+    } else {
+      this.disableNext = false;
+    }
+    if (this.pageIndex === 0) {
+      this.disablePrev = true;
+    } else {
+      this.disablePrev = false;
+    }
   }
 
-  fetchRecurringData = (payload) => {
-    const userToken = localStorage.getItem('userToken');
-    axios.post(`${globals.base_url}/asset_data/count/recurring`, payload, {
-      headers: {
-        'Authorization': 'Bearer ' + userToken
-      }
+  getNext = () => {
+    this.setState({
+      pageIndex: this.state.pageIndex + 1
     })
-      .then(response => {
-        if (response.data.status === false) {
-          const msg = response.data.msg || 'Please reload page.';
-          globals.createToast(msg, 3000, 'bottom-right');
-          return console.log(response, 'fetch asset not successful');
-        }
-        let res = response.data;
-        let data = {
-          labels: ["total amount($)", "total amount(₦)"],
-          datasets: [{
-            label: "Recurring expenditure",
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [res.amount_dollar, res.amount_naira]
-          }]
-        }
-        this.setState({
-          data: data,
-          recurring_dollar: res.amount_dollar,
-          recurring_naira: res.amount_naira
-        })
-      })
-      .catch(error => {
-        console.log('catch error register', error);
-        throw (error);
-      })
+    let skip = this.state.pageIndex * this.state.limit;
+    this.props.fetchAssetsAll(this.state.assetType, skip, this.limit);
+    this.itemNav();
+  }
+
+  getPrev = () => {
+    this.setState({
+      pageIndex: this.state.pageIndex - 1
+    })
+    let skip = this.state.pageIndex * this.state.limit;
+    this.props.fetchAssetsAll(this.state.assetType, skip, this.limit);
+    this.itemNav();
   }
 
   back = () => {
@@ -137,8 +89,13 @@ export class AssetDetails extends Component {
 
   render() {
     let table = [];
-    if (this.props.assets[0]) {
-      this.props.assets[0].forEach((asset, i) => {
+    if (this.props.assetsAll.length <= 10) {
+      this.disableNext = true;
+    } else {
+      this.disableNext = false;
+    }
+    if (this.props.assetsAll[0]) {
+      this.props.assetsAll[0].forEach((asset, i) => {
         table.push(
           <tr key={i}>
             <td>{asset.name}</td>
@@ -156,7 +113,7 @@ export class AssetDetails extends Component {
     return (
       <>
         <div className={'data-loading'}>
-          <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.assets.length ? 'loader-img' : 'hide'} alt="+" />
+          <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.assetsAll.length ? 'loader-img' : 'hide'} alt="+" />
         </div>
         <Header />
         <div className="go-back mt-5" onClick={this.back}>
@@ -164,7 +121,7 @@ export class AssetDetails extends Component {
           <span>Back</span>
         </div>
         <section className="table-toppings">
-          <h1 className="text-center component-header mb-5">All assets</h1>
+          <h1 className="text-center component-header mb-5">{this.state.type || ''} assets</h1>
           <div className="tbl-header">
             <table>
               <thead>
@@ -179,31 +136,11 @@ export class AssetDetails extends Component {
               </tbody>
             </table>
           </div>
-        </section>
-        {/* <div className="expenditures">
-          <div className="row">
-            <div className="col-lg-4 col-md-6 col-sm-10 mx-auto">
-              <Bar
-                height={250}
-                data={this.state.data}
-                options={this.chartOptions} />
-              <div className="mt-4">
-                <p>Recurring expenditure($):  {this.state.recurring_dollar || 0}</p>
-                <p>Recurring expenditure(₦): {this.state.recurring_naira || 0}</p>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6 col-sm-10 mx-auto capital">
-              <Bar
-                height={250}
-                data={this.state.capData}
-                options={this.chartOptions} />
-              <div className="mt-4">
-                <p>Capital expenditure($):  {this.state.capital_dollar || 0}</p>
-                <p>Capital expenditure(₦): {this.state.capital_naira || 0}</p>
-              </div>
-            </div>
+          <div className="next-prev">
+            <button className="bttn" disabled={this.disablePrev}>Prev</button>
+            <button className="bttn" disabled={this.disableNext}>Next</button>
           </div>
-        </div> */}
+        </section>
         <Footer />
       </>
     )
@@ -211,8 +148,9 @@ export class AssetDetails extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  assets: state.assets.assets
+  assets: state.assets.assets,
+  assetsAll: state.assets.assetsAll
 })
 
 
-export default connect(mapStateToProps, { fetchAssets })(AssetDetails)
+export default connect(mapStateToProps, { fetchAssetsAll })(AssetDetails)

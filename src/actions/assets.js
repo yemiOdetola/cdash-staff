@@ -1,4 +1,4 @@
-import { FETCH_ASSETS_CONTAINERS, RECURRING_DATA, ASSETS, ASSET_DATA, CLEAR } from '../constants';
+import { FETCH_ASSETS_CONTAINERS, RECURRING_DATA, ASSETS, ASSETS_ALL, ASSET_DATA, CLEAR } from '../constants';
 import axios from 'axios';
 import globals from '../globals';
 
@@ -31,25 +31,54 @@ export function fetchAssets(id) {
   const userToken = localStorage.getItem('userToken');
   return dispatch => {
     dispatch(clearAssets(''))
-      axios.get(`${globals.base_url}/asset/asset_data/${id}`, {
-          headers: {
-              'Authorization': 'Bearer ' + userToken
-          }
+    axios.get(`${globals.base_url}/asset/asset_data/${id}`, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          const msg = response.data.msg || 'Please reload page.';
+          globals.createToast(msg, 3000, 'bottom-right');
+          return console.log(response, 'fetch asset not successful');
+        }
+        let res = response.data;
+        console.log('response', res);
+        dispatch(assets(res.data));
       })
-          .then(response => {
-              if (response.data.status === false) {
-                  const msg = response.data.msg || 'Please reload page.';
-                  globals.createToast(msg, 3000, 'bottom-right');
-                  return console.log(response, 'fetch asset not successful');
-              }
-              let res = response.data;
-              console.log('response', res);
-              dispatch(assets(res.data));
-          })
-          .catch(error => {
-              console.log('catch error register', error);
-              throw (error);
-          })
+      .catch(error => {
+        console.log('catch error register', error);
+        throw (error);
+      })
+  }
+}
+
+export function fetchAssetsAll(type, skip, count) {
+  const userToken = localStorage.getItem('userToken');
+  const payload = { type }
+  return dispatch => {
+    dispatch(clearAssets(''))
+    axios.post(`${globals.base_url}/asset_data/type`, payload, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      },
+      params: {
+        skip: skip,
+        count: count
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          return console.log(response, 'fetch asset not successful');
+        }
+        let res = response.data;
+        console.log('response', res);
+        dispatch(assetsAll(res.data));
+      })
+      .catch(error => {
+        console.log('catch error register', error);
+        throw (error);
+      })
   }
 }
 
@@ -58,25 +87,25 @@ export function fetchRecurringData(payload) {
   const userToken = localStorage.getItem('userToken');
   return dispatch => {
     dispatch(clearAssets(''))
-      axios.post(`${globals.base_url}/asset_data/count/recurring`, payload, {
-          headers: {
-              'Authorization': 'Bearer ' + userToken
-          }
+    axios.post(`${globals.base_url}/asset_data/count/recurring`, payload, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          const msg = response.data.msg || 'Please reload page.';
+          globals.createToast(msg, 3000, 'bottom-right');
+          return console.log(response, 'fetch asset not successful');
+        }
+        let res = response.data;
+        console.log('response', res);
+        dispatch(reccuringData(res));
       })
-          .then(response => {
-              if (response.data.status === false) {
-                  const msg = response.data.msg || 'Please reload page.';
-                  globals.createToast(msg, 3000, 'bottom-right');
-                  return console.log(response, 'fetch asset not successful');
-              }
-              let res = response.data;
-              console.log('response', res);
-              dispatch(reccuringData(res));
-          })
-          .catch(error => {
-              console.log('catch error register', error);
-              throw (error);
-          })
+      .catch(error => {
+        console.log('catch error register', error);
+        throw (error);
+      })
   }
 }
 
@@ -84,24 +113,24 @@ export function fetchAssetData(id) {
   const userToken = localStorage.getItem('userToken');
   return dispatch => {
     dispatch(clearAssets(''))
-      axios.get(`${globals.base_url}/asset_data/${id}`, {
-          headers: {
-              'Authorization': 'Bearer ' + userToken
-          }
+    axios.get(`${globals.base_url}/asset_data/${id}`, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          const msg = response.data.msg || 'Please reload page.';
+          globals.createToast(msg, 3000, 'bottom-right');
+          return console.log(response, 'fetch asset not successful');
+        }
+        let res = response.data;
+        dispatch(assetData(res.data));
       })
-          .then(response => {
-              if (response.data.status === false) {
-                  const msg = response.data.msg || 'Please reload page.';
-                  globals.createToast(msg, 3000, 'bottom-right');
-                  return console.log(response, 'fetch asset not successful');
-              }
-              let res = response.data;
-              dispatch(assetData(res.data));
-          })
-          .catch(error => {
-              console.log('catch error register', error);
-              throw (error);
-          })
+      .catch(error => {
+        console.log('catch error register', error);
+        throw (error);
+      })
   }
 }
 
@@ -134,7 +163,14 @@ function assetData(data) {
   };
 }
 
-function clearAssets (data) {
+function assetsAll(data) {
+  return {
+    type: ASSETS_ALL,
+    payload: data
+  }
+}
+
+function clearAssets(data) {
   return {
     type: CLEAR,
     payload: data

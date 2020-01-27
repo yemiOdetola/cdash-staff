@@ -17,3 +17,4 @@ export const USERS_COUNT = 'USERS_COUNT';
 export const AVG_SCORE = 'AVG_SCORE';
 export const FETCH_MATURITY = 'FETCH_MATURITY';
 export const ORG_DETAILS = 'ORG_DETAILS';
+export const ASSETS_ALL = 'ASSETS_ALL';

@@ -33,14 +33,14 @@ export class Header extends Component {
               <nav className="bar bar--sm" style={{backgroundColor: this.color}} id="menu4">
                 <div className="container">
                   <div className="row">
-                    <div className="logo-bar">
+                    <div className="logo-bar pl-5">
                       <div className="bar__module">
                         <a href="index.html">
                           <img className="logo" alt="logo" src={this.logo} />
                         </a>
                       </div>
                     </div>
-                    <div className="ml-auto">
+                    <div className="ml-auto pr-5">
                       <div className="bar__module">
                         <ul className="menu-horizontal">
                           <li className={!this.props.user ? "dropdown bttn login" : 'visibility-hidden'}>
