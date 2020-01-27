@@ -11,3 +11,7 @@ export const ASSETS = 'ASSETS';
 export const ASSET_DATA = 'ASSET_DATA';
 export const FETCH_ASSETS_CONTAINERS = 'FETCH_ASSETS_CONTAINERS';
 export const RECURRING_DATA = 'RECURRING_DATA';
+export const ASSETS_COUNT = 'ASSETS_COUNT';
+export const STAFFS_COUNT = 'STAFFS_COUNT';
+export const USERS_COUNT = 'USERS_COUNT';
+export const AVG_SCORE = 'AVG_SCORE';

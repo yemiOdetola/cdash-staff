@@ -1,0 +1,140 @@
+import { CLEAR, ASSETS_COUNT, STAFFS_COUNT, AVG_SCORE, USERS_COUNT } from '../constants';
+import axios from 'axios';
+import globals from '../globals';
+
+
+export function assetsCount() {
+  const userToken = localStorage.getItem('userToken');
+  const payload = {
+    id: ''
+  }
+  return dispatch => {
+    dispatch(clearSummary(''))
+    axios.post(`${globals.base_url}/asset_data/count`, payload, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          return console.log(response, 'fetch users not successful');
+        }
+        let res = response.data;
+        console.log('assets count', res.all_data);
+        dispatch(assets(res.all_data));
+      })
+      .catch(error => {
+        console.log('catch error socials', error);
+        throw (error);
+      })
+  }
+}
+
+export function usersCount() {
+  const userToken = localStorage.getItem('userToken');
+  return dispatch => {
+    dispatch(clearSummary(''))
+    axios.get(`${globals.base_url}/user/count`, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          return console.log(response, 'fetch users not successful');
+        }
+        let res = response.data;
+        console.log('assets count', res.data);
+        dispatch(users(res.data));
+      })
+      .catch(error => {
+        console.log('catch error socials', error);
+        throw (error);
+      })
+  }
+}
+
+export function staffsCount() {
+  const userToken = localStorage.getItem('userToken');
+  return dispatch => {
+    dispatch(clearSummary(''))
+    axios.get(`${globals.base_url}/staff/count`, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          return console.log(response, 'fetch users not successful');
+        }
+        let res = response.data;
+        console.log('assets count', res.data);
+        dispatch(staffs(res.data));
+      })
+      .catch(error => {
+        console.log('catch error socials', error);
+        throw (error);
+      })
+  }
+}
+
+
+export function avgCount() {
+  const userToken = localStorage.getItem('userToken');
+  return dispatch => {
+    dispatch(clearSummary(''))
+    axios.post(`${globals.base_url}/maturity/average`,{}, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          return console.log(response, 'fetch users not successful');
+        }
+        let res = response.data;
+        console.log('assets count', res.average);
+        dispatch(avgscore(res.average));
+      })
+      .catch(error => {
+        console.log('catch error socials', error);
+        throw (error);
+      })
+  }
+}
+
+
+function assets(data) {
+  return {
+    type: ASSETS_COUNT,
+    payload: data
+  }
+}
+
+function users(data) {
+  return {
+    type: USERS_COUNT,
+    payload: data
+  }
+}
+
+function staffs(data) {
+  return {
+    type: STAFFS_COUNT,
+    payload: data
+  }
+}
+
+function avgscore(data) {
+  return {
+    type: AVG_SCORE,
+    payload: data
+  }
+}
+
+function clearSummary(data) {
+  return {
+    type: CLEAR,
+    payload: data
+  }
+}
