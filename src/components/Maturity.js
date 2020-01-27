@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
 import globals from '../globals';
-import { fetchScores } from '../actions/summary';
+import { fetchScores, fetchAverage } from '../actions/summary';
 
 export class Maturity extends Component {
   constructor(props) {
@@ -13,8 +13,9 @@ export class Maturity extends Component {
     }
   }
   componentDidMount() {
-    if(localStorage.getItem('userToken') && localStorage.getItem('userId')) {
+    if (localStorage.getItem('userToken') && localStorage.getItem('userId')) {
       this.props.fetchScores();
+      this.props.fetchAverage();
     } else {
       this.props.history.push('/login');
     }
@@ -61,6 +62,9 @@ export class Maturity extends Component {
               </tbody>
             </table>
           </div>
+          <div className="mt-4">
+            <p className="chart-data">Average maturity score:  {this.props.average}</p>
+          </div>
         </section>
         <Footer />
       </>
@@ -69,7 +73,8 @@ export class Maturity extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  maturity: state.summary.maturity
+  maturity: state.summary.maturity,
+  average: state.summary.average,
 })
 
-export default connect(mapStateToProps, { fetchScores })(Maturity)
+export default connect(mapStateToProps, { fetchScores, fetchAverage })(Maturity)

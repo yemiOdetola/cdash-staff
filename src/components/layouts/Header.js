@@ -9,7 +9,7 @@ export class Header extends Component {
     this.state = {}
   }
   componentDidMount() {
-    this.props.getOrgdetails()
+    this.props.getOrgdetails();
   }
   color = '#333';
   logo = '';
@@ -35,7 +35,7 @@ export class Header extends Component {
                   <div className="row">
                     <div className="logo-bar pl-5">
                       <div className="bar__module">
-                        <a href="index.html">
+                        <a href="/">
                           <img className="logo" alt="logo" src={this.logo} />
                         </a>
                       </div>

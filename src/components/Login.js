@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import globals from '../globals';
-import { login } from '../actions/auth';
+import { login, getOrgdetails } from '../actions/auth';
 
 export class Login extends Component {
 
@@ -12,6 +11,10 @@ export class Login extends Component {
       email: '',
       password: '',
     }
+  }
+
+  componentDidMount() {
+    this.props.getOrgdetails();
   }
 
   handleChange = (key, value) => {
@@ -33,14 +36,15 @@ export class Login extends Component {
     this.props.login(this.props, payload);
   }
   render() {
+    if (this.props.orgDetails && this.props.orgDetails.logo) {
+      this.logo = this.props.orgDetails.logo;
+    }
     return (
       <>
 
-        <div className="container-fluid height-100 auth-bg">
-          <div className="auth-logo">
-            <Link to='/'>
-              {/* <img src={require('../assets/images/logo-white.png')} alt="logo" /> */}
-            </Link>
+        <div className="container-fluid height-100 auth-bg pt-4 pl-4">
+          <div className="auth-logo login">
+            <img className="logo" alt="logo" src={this.logo} />
           </div>
           <div className="flex-itemss">
             <div className="col-lg-4 col-md-7 mx-auto">
@@ -64,10 +68,13 @@ export class Login extends Component {
             </div>
           </div>
         </div>
-
       </>
     )
   }
 }
 
-export default connect(null, {login})(Login)
+const mapStateToProps = (state) => ({
+  orgDetails: state.auth.orgDetails
+})
+
+export default connect(mapStateToProps, { login, getOrgdetails })(Login)

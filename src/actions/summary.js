@@ -1,4 +1,4 @@
-import { CLEAR, ASSETS_COUNT, STAFFS_COUNT, AVG_SCORE, USERS_COUNT, FETCH_MATURITY } from '../constants';
+import { CLEAR, ASSETS_COUNT, STAFFS_COUNT, AVG_SCORE, AVERAGE, USERS_COUNT, FETCH_MATURITY } from '../constants';
 import axios from 'axios';
 import globals from '../globals';
 
@@ -131,6 +131,29 @@ export function fetchScores() {
   }
 }
 
+export function fetchAverage() {
+  const userToken = localStorage.getItem('userToken');
+  return dispatch => {
+    dispatch(clearSummary(''))
+    axios.post(`${globals.base_url}/maturity/average`,{}, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          return console.log(response, 'fetch users not successful');
+        }
+        let res = response.data;
+        dispatch(average(res.average));
+      })
+      .catch(error => {
+        console.log('catch error socials', error);
+        throw (error);
+      })
+  }
+}
+
 function assets(data) {
   return {
     type: ASSETS_COUNT,
@@ -155,6 +178,13 @@ function staffs(data) {
 function avgscore(data) {
   return {
     type: AVG_SCORE,
+    payload: data
+  }
+}
+
+function average(data) {
+  return {
+    type: AVERAGE,
     payload: data
   }
 }
