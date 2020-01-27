@@ -54,7 +54,7 @@ export class Staffs extends Component {
           <span>Back</span>
         </div>
         <section className="table-toppings">
-          <h1 className="text-center component-header mb-5">Staffs</h1>
+          <h1 className="text-center component-header mb-5">Human assets</h1>
           <div className="tbl-header">
             <table>
               <thead>

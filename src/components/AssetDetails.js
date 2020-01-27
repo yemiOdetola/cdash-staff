@@ -121,7 +121,7 @@ export class AssetDetails extends Component {
           <span>Back</span>
         </div>
         <section className="table-toppings">
-          <h1 className="text-center component-header mb-5">{this.state.type || ''} assets</h1>
+          {/* <h1 className="text-center component-header mb-5">{this.state.type || ''} assets</h1> */}
           <div className="tbl-header">
             <table>
               <thead>

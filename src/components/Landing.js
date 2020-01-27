@@ -45,32 +45,40 @@ export class Landing extends Component {
             <div className="col-lg-12 p-0">
               <section className="component-section">
                 <div className="col-md-12">
-                  <h1 className="component-header">Assets</h1>
-                  <div className="assets">
+                  {/* <h1 className="component-header">Assets</h1> */}
+                  <div className="assets change">
                     <div className="each-asset">
-                      <h3 className="title">Hardware</h3>
-                      <Link to={`/asset-details/Hardware`}>View details</Link>
+                      <h3 className="title"><Link to={`/asset-details/Hardware`}>Hardware</Link></h3>
+                      {/* <Link to={`/asset-details/Hardware`}>View details</Link> */}
                     </div>
+                    <div className="underline-sm"></div>
                     <div className="each-asset">
-                      <h3 className="title">Software</h3>
-                      <Link to={`/asset-details/Software`}>View details</Link>
+                      <h3 className="title"><Link to={`/asset-details/Software`}>Software</Link></h3>
+                      {/* <Link to={`/asset-details/Software`}>View details</Link> */}
                     </div>
+                    <div className="underline-sm"></div>
                     <div className="each-asset">
-                      <h3 className="title">Connectivity</h3>
-                      <Link to={`/asset-details/Connectivity`}>View details</Link>
+                      <h3 className="title"><Link to={`/asset-details/Connectivity`}>Connectivity</Link></h3>
+                      {/* <Link to={`/asset-details/Connectivity`}>View details</Link> */}
                     </div>
+                    <div className="underline-bg"></div>
+                    <div className="underline-sm"></div>
                     <div className="each-asset">
-                      <h3 className="title">Others</h3>
-                      <Link to={`/asset-details/Others`}>View details</Link>
+                      <h3 className="title"><Link to={`/asset-details/Others`}>Business continuity</Link></h3>
+                      {/* <Link to={`/asset-details/Others`}>View details</Link> */}
                     </div>
+                    <div className="underline-sm"></div>
                     <div className="each-asset">
-                      <h3 className="title">Staffs</h3>
-                      <Link to={`/staffs`}>View details</Link>
+                      <h3 className="title"><Link to={`/staffs`}>Human assets</Link></h3>
+                      {/* <Link to={`/staffs`}>View details</Link> */}
                     </div>
+                    <div className="underline-sm"></div>
                     <div className="each-asset">
-                      <h3 className="title">Social media</h3>
-                      <Link to={`/socials`}>View details</Link>
+                      <h3 className="title"><Link to={`/socials`}>Social media</Link></h3>
+                      {/* <Link to={`/socials`}>View details</Link> */}
                     </div>
+                    <div className="underline-bg"></div>
+                    <div className="underline-sm"></div>
                     {/* {assetsContainers} */}
                   </div>
                 </div>

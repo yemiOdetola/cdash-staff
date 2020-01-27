@@ -2,6 +2,56 @@
   background-color: #fafafa;
   padding: 4rem 0;
   .assets {
+    &.change {
+      .underline-bg {
+        border-bottom: 1px solid #888;
+        width: 94%;
+        margin: auto;
+        @media(max-width: 767px) {
+          display: none;
+        }
+      }
+      .underline-sm {
+        border-bottom: 1px solid #888;
+        width: 80%;
+        margin: auto;
+        @media(min-width: 768px) {
+          display: none;
+        }
+      }
+
+      .each-asset {
+        width: 94%;
+        margin: 1.5rem auto;
+        text-align: center;
+        height: 70px;
+        // border: 1px solid #ECECEC;
+        // border-radius: 0.5rem;
+        // background-color: #FFFFFF;
+        padding: 1.25rem;
+        @media(min-width: 992px) {
+          height: 105px;
+          width: 30%;
+          margin: 1rem;
+          padding: 2.25rem;
+
+        }
+        .title {
+          font-weight: 500;
+          font-size: 1.25rem;
+          a {
+            font-size: 1.25rem
+          }
+        }
+        .sub {
+          font-size: 0.975rem;
+          font-weight: 300;
+        }
+        a {
+          font-size: 0.875rem;
+        }
+      }
+    }
     width: 95%;
     margin: 0 auto;
     display: flex;
@@ -15,31 +65,31 @@
       width: 60%;
       margin: auto;
     }
-    .each-asset {
-      width: 94%;
-      margin: 1rem auto;
-      height: 100px;
-      border: 1px solid #ECECEC;
-      border-radius: 0.5rem;
-      background-color: #FFFFFF;
-      padding: 1.25rem;
-      @media(min-width: 992px) {
-        height: 105px;
-        width: 30%;
-        margin: 1rem;
-      }
-      .title {
-        font-weight: 500;
-        font-size: 1.25rem;
-      }
-      .sub {
-        font-size: 0.975rem;
-        font-weight: 300;
-      }
-      a {
-        font-size: 0.875rem;
-      }
-    }
+    // .each-asset {
+    //   width: 94%;
+    //   margin: 1rem auto;
+    //   height: 100px;
+    //   border: 1px solid #ECECEC;
+    //   border-radius: 0.5rem;
+    //   background-color: #FFFFFF;
+    //   padding: 1.25rem;
+    //   @media(min-width: 992px) {
+    //     height: 105px;
+    //     width: 30%;
+    //     margin: 1rem;
+    //   }
+    //   .title {
+    //     font-weight: 500;
+    //     font-size: 1.25rem;
+    //   }
+    //   .sub {
+    //     font-size: 0.975rem;
+    //     font-weight: 300;
+    //   }
+    //   a {
+    //     font-size: 0.875rem;
+    //   }
+    // }
   }
 }
 .visibility-hidden {
