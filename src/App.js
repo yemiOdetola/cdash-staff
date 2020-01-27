@@ -13,12 +13,14 @@ import ExpensesTurnover from './components/ExpensesTurnover';
 import Socials from './components/Socials';
 import RecurringExpenditure from './components/RecurringExpenditure';
 import CapitalExpenditure from './components/CapitalExpenditure';
+import Logs from './components/Logs';
 
 function App() {
   return (
     <Switch>
       <Route path='/' exact component={Landing} />
       <Route path='/login' component={Login} />
+      <Route path='/logs' component={Logs} />
       <Route path='/expenses-turnover' component={ExpensesTurnover} />
       <Route path='/recurring-expenditure' component={RecurringExpenditure} />
       <Route path='/capital-expenditure' component={CapitalExpenditure} />

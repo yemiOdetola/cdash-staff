@@ -102,6 +102,14 @@ export class Landing extends Component {
                         </Link>
                       </div>
                     </div>
+                    <div className="col-md-2 col-lg-2">
+                      <div className="text-block menu">
+                        <Link to="/logs">
+                          <img src={require('../assets/images/logs.svg')} className="menu-img" alt="staffs" />
+                          <h4>Logs</h4>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
