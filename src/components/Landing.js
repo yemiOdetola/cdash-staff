@@ -56,26 +56,26 @@ export class Landing extends Component {
                     <div className={this.props.software ? "each-asset" : 'hide'}>
                       <h3 className="title"><Link to={`/asset-details/Software`}>Software</Link></h3>
                     </div>
-                    <div className="underline-sm"></div>
+                    {/* <div className="underline-sm"></div> */}
                     <div className={this.props.connectivity ? "each-asset" : 'hide'}>
                       <h3 className="title"><Link to={`/asset-details/Connectivity`}>Connectivity</Link></h3>
                     </div>
-                    <div className="underline-bg"></div>
+                    {/* <div className="underline-bg"></div> */}
                     <div className={this.props.business_continuity ? "each-asset" : 'hide'}>
                       <h3 className="title"><Link to={`/asset-details/Business_continuity`}>Business continuity</Link></h3>
                     </div>
                     <div className={this.props.others ? "each-asset" : 'hide'}>
                       <h3 className="title"><Link to={`/asset-details/Others`}>Others</Link></h3>
                     </div>
-                    <div className="underline-sm"></div>
+                    {/* <div className="underline-sm"></div> */}
                     <div className="each-asset">
                       <h3 className="title"><Link to={`/staffs`}>Human assets</Link></h3>
                     </div>
                     <div className="each-asset">
                       <h3 className="title"><Link to={`/socials`}>Social media</Link></h3>
                     </div>
-                    <div className="underline-sm"></div>
-                    <div className="underline-bg"></div>
+                    {/* <div className="underline-sm"></div> */}
+                    {/* <div className="underline-bg"></div> */}
                     {/* <div className="each-asset">
                       <h3 className="title"><Link to={`/socials`}>Social media</Link></h3>
                     </div> */}
