@@ -1,8 +1,8 @@
-import { FETCH_ASSETS_CONTAINERS, RECURRING_DATA, ASSETS, ASSETS_ALL, ASSET_DATA, CLEAR } from '../constants';
+import { FETCH_ASSETS_CONTAINERS, RECURRING_DATA, ASSETS, ASSETS_ALL, ASSET_DATA, OTHERS, HARDWARE, SOFTWARE, CONNECTIVITY, BUSINESS_CONTINUITY, CLEAR } from '../constants';
 import axios from 'axios';
 import globals from '../globals';
 
-export function fetchAssetsContainers(payload) {
+export function fetchAssetsContainers() {
   const userToken = localStorage.getItem('userToken');
   return dispatch => {
     dispatch(clearAssets(''))
@@ -72,6 +72,11 @@ export function fetchAssetsAll(type, skip, count) {
           return console.log(response, 'fetch asset not successful');
         }
         let res = response.data;
+        if(type === 'Others') {dispatch(others(res.data))};
+        if(type === 'Hardware') {dispatch(hardware(res.data))};
+        if(type === 'Software') {dispatch(software(res.data))};
+        if(type === 'Connectivity') {dispatch(connectivity(res.data))};
+        if(type === 'Business_continuity') {dispatch(business_continuity(res.data))};
         console.log('response', res);
         dispatch(assetsAll(res.data));
       })
@@ -167,6 +172,78 @@ function assetsAll(data) {
   return {
     type: ASSETS_ALL,
     payload: data
+  }
+}
+
+function others(data) {
+  if(data.length > 0) {
+    console.log('greater than 0');
+    return {
+      type: OTHERS,
+      payload: true
+    };
+  } else {
+    console.log('less than 0');
+    return {
+      type: OTHERS,
+      payload: false
+    };
+  }
+}
+
+function business_continuity(data) {
+  if(data.length > 0) {
+    return {
+      type: BUSINESS_CONTINUITY,
+      payload: true
+    };
+  } else {
+    return {
+      type: BUSINESS_CONTINUITY,
+      payload: false
+    };
+  }
+}
+
+function hardware(data) {
+  if(data.length > 0) {
+    return {
+      type: HARDWARE,
+      payload: true
+    };
+  } else {
+    return {
+      type: HARDWARE,
+      payload: false
+    };
+  }
+}
+
+function software(data) {
+  if(data.length > 0) {
+    return {
+      type: SOFTWARE,
+      payload: true
+    };
+  } else {
+    return {
+      type: SOFTWARE,
+      payload: false
+    };
+  }
+}
+
+function connectivity(data) {
+  if(data.length > 0) {
+    return {
+      type: CONNECTIVITY,
+      payload: true
+    };
+  } else {
+    return {
+      type: CONNECTIVITY,
+      payload: false
+    };
   }
 }
 

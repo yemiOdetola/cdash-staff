@@ -1,11 +1,16 @@
-import { FETCH_ASSETS_CONTAINERS, ASSETS, ASSET_DATA, RECURRING_DATA, ASSETS_ALL, CLEAR } from '../constants';
+import { FETCH_ASSETS_CONTAINERS, ASSETS, ASSET_DATA, RECURRING_DATA, ASSETS_ALL, OTHERS, HARDWARE, SOFTWARE, BUSINESS_CONTINUITY, CONNECTIVITY, CLEAR } from '../constants';
 
 const initialState = {
   assetsContainers: [],
   assets: [],
   assetsAll: [],
   recurring_data: {},
-  asset_data: {}
+  asset_data: {},
+  hardware: false,
+  software: false,
+  connectivity: false,
+  others: false,
+  business_continuity: false
 }
 
 export default function assets(state = initialState, action) {
@@ -20,7 +25,7 @@ export default function assets(state = initialState, action) {
         ...state,
         assets: [...state.assets, action.payload]
       }
-      case ASSETS_ALL:
+    case ASSETS_ALL:
       return {
         ...state,
         assetsAll: [...state.assetsAll, action.payload]
@@ -36,6 +41,36 @@ export default function assets(state = initialState, action) {
       return {
         ...state,
         asset_data: asset_data
+      }
+    case HARDWARE:
+      console.log(action.payload);
+      return {
+        ...state,
+        hardware: action.payload
+      }
+    case SOFTWARE:
+      console.log(action.payload);
+      return {
+        ...state,
+        software: action.payload
+      }
+      case BUSINESS_CONTINUITY:
+        console.log(action.payload);
+        return {
+          ...state,
+          business_continuity: action.payload
+        }
+    case CONNECTIVITY:
+      console.log(action.payload);
+      return {
+        ...state,
+        connectivity: action.payload
+      }
+    case OTHERS:
+      console.log(action.payload);
+      return {
+        ...state,
+        others: action.payload
       }
     case CLEAR:
       const empty = {};

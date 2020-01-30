@@ -116,9 +116,9 @@ export class AssetData extends Component {
                           <h4>Location of deployment</h4>
                           <p>{this.props.asset_data.location_of_deployment}</p>
                         </div>
-                        <div className={this.props.asset_data.projected_cost ? "text-block" : 'hide'}>
+                        <div className={this.props.asset_data.industrial_link ? "text-block" : 'hide'}>
                           <h4>Industrial link</h4>
-                          <p><a href={this.props.asset_data.industrial_link}>{this.props.asset_data.industrial_link}</a></p>
+                          <p><a target="_blank" rel="noopener noreferrer" href={this.props.asset_data.industrial_link}>{this.props.asset_data.industrial_link}</a></p>
                         </div>
                         <div className={this.props.asset_data.diagram ? "text-block" : 'hide'}>
                           <h4>Diagram</h4>

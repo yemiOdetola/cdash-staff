@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
 import globals from '../globals';
-import { fetchAssetsContainers } from '../actions/assets';
+import { fetchAssetsContainers, fetchAssetsAll } from '../actions/assets';
 
 export class Landing extends Component {
   constructor(props) {
@@ -17,6 +17,10 @@ export class Landing extends Component {
   componentDidMount() {
     if (localStorage.getItem('userToken') && localStorage.getItem('userId')) {
       this.props.fetchAssetsContainers();
+      let assets = ['Hardware', 'Software', 'Connectivity', 'Others', 'Business_continuity'];
+      assets.forEach(asset => {
+        this.props.fetchAssetsAll(asset, 0, 99);
+      });
     } else {
       this.props.history.push('/login');
     }
@@ -45,71 +49,43 @@ export class Landing extends Component {
             <div className="col-lg-12 p-0">
               <section className="component-section">
                 <div className="col-md-12">
-                  {/* <h1 className="component-header">Assets</h1> */}
                   <div className="assets change">
-                    <div className="each-asset">
+                    <div className={this.props.hardware ? "each-asset" : 'hide'}>
                       <h3 className="title"><Link to={`/asset-details/Hardware`}>Hardware</Link></h3>
-                      {/* <Link to={`/asset-details/Hardware`}>View details</Link> */}
                     </div>
-                    <div className="underline-sm"></div>
-                    <div className="each-asset">
+                    <div className={this.props.software ? "each-asset" : 'hide'}>
                       <h3 className="title"><Link to={`/asset-details/Software`}>Software</Link></h3>
-                      {/* <Link to={`/asset-details/Software`}>View details</Link> */}
                     </div>
                     <div className="underline-sm"></div>
-                    <div className="each-asset">
+                    <div className={this.props.connectivity ? "each-asset" : 'hide'}>
                       <h3 className="title"><Link to={`/asset-details/Connectivity`}>Connectivity</Link></h3>
-                      {/* <Link to={`/asset-details/Connectivity`}>View details</Link> */}
                     </div>
                     <div className="underline-bg"></div>
-                    <div className="underline-sm"></div>
-                    <div className="each-asset">
-                      <h3 className="title"><Link to={`/asset-details/Others`}>Business continuity</Link></h3>
-                      {/* <Link to={`/asset-details/Others`}>View details</Link> */}
+                    <div className={this.props.business_continuity ? "each-asset" : 'hide'}>
+                      <h3 className="title"><Link to={`/asset-details/Business_continuity`}>Business continuity</Link></h3>
+                    </div>
+                    <div className={this.props.others ? "each-asset" : 'hide'}>
+                      <h3 className="title"><Link to={`/asset-details/Others`}>Others</Link></h3>
                     </div>
                     <div className="underline-sm"></div>
                     <div className="each-asset">
                       <h3 className="title"><Link to={`/staffs`}>Human assets</Link></h3>
-                      {/* <Link to={`/staffs`}>View details</Link> */}
                     </div>
-                    <div className="underline-sm"></div>
                     <div className="each-asset">
                       <h3 className="title"><Link to={`/socials`}>Social media</Link></h3>
-                      {/* <Link to={`/socials`}>View details</Link> */}
                     </div>
-                    <div className="underline-bg"></div>
                     <div className="underline-sm"></div>
-                    {/* {assetsContainers} */}
+                    <div className="underline-bg"></div>
+                    {/* <div className="each-asset">
+                      <h3 className="title"><Link to={`/socials`}>Social media</Link></h3>
+                    </div> */}
+                    {/* <div className="underline-sm"></div> */}
                   </div>
                 </div>
               </section>
               <section className="text-center">
                 <div className="container">
                   <div className="row mx-auto">
-                    {/* <div className="col-md-2 col-lg-2">
-                      <div className="text-block menu">
-                        <Link to="/staffs">
-                          <img src={require('../assets/images/staffs.svg')} className="menu-img" alt="staffs" />
-                          <h4>Staffs</h4>
-                        </Link>
-                      </div>
-                    </div> */}
-                    {/* <div className="col-md-2 col-lg-2">
-                      <div className="text-block menu">
-                        <Link to="/socials">
-                          <img src={require('../assets/images/socials.svg')} className="menu-img" alt="staffs" />
-                          <h4>Social media</h4>
-                        </Link>
-                      </div>
-                    </div> */}
-                    {/* <div className="col-md-2 col-lg-2">
-                      <div className="text-block menu">
-                        <Link to="/users">
-                          <img src={require('../assets/images/users.svg')} className="menu-img" alt="staffs" />
-                          <h4>Users</h4>
-                        </Link>
-                      </div>
-                    </div> */}
                     <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/expenses-turnover">
@@ -163,8 +139,13 @@ export class Landing extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  assetsContainers: state.assets.assetsContainers
+  assetsContainers: state.assets.assetsContainers,
+  others: state.assets.others,
+  hardware: state.assets.hardware,
+  software: state.assets.software,
+  connectivity: state.assets.connectivity,
+  business_continuity: state.assets.business_continuity
 })
 
 
-export default connect(mapStateToProps, { fetchAssetsContainers })(Landing)
+export default connect(mapStateToProps, { fetchAssetsContainers, fetchAssetsAll })(Landing)

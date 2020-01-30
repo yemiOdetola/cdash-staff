@@ -19,19 +19,15 @@
           display: none;
         }
       }
-
       .each-asset {
-        width: 94%;
+        width: 40%;
         margin: 1.5rem auto;
         text-align: center;
         height: 70px;
-        // border: 1px solid #ECECEC;
-        // border-radius: 0.5rem;
-        // background-color: #FFFFFF;
         padding: 1.25rem;
         @media(min-width: 992px) {
           height: 105px;
-          width: 30%;
+          width: 29%;
           margin: 1rem;
           padding: 2.25rem;
 
@@ -441,5 +437,33 @@ form.chart-form {
 .auth-logo.login {
   img {
     height: 65px;
+  }
+}
+
+.auth-bg {
+  background-image: url('../images/bg-a.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff !important;
+  height: 100vh;
+  width: 100vw;
+  .flex-itemss {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+  }
+  .auth-logo {
+      width: 110px;
+      position: relative;
+      bottom: 2rem;
+      &:hover {
+          cursor: pointer;
+      }
+  }
+  input {
+      font-size: 0.875rem !important;
+      height: 3rem;
   }
 }
