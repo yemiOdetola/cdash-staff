@@ -20,8 +20,8 @@
         }
       }
       .each-asset {
-        width: 40%;
-        margin: 1.5rem auto;
+        width: 35%;
+        margin: 1.5rem;
         text-align: center;
         height: 70px;
         padding: 1.25rem;
@@ -35,6 +35,7 @@
         .title {
           font-weight: 500;
           font-size: 1.25rem;
+          text-align: left;
           a {
             font-size: 1.25rem
           }
@@ -465,5 +466,22 @@ form.chart-form {
   input {
       font-size: 0.875rem !important;
       height: 3rem;
+  }
+}
+.coverr:before {
+  background-color: rgba(83, 83, 83, 0.33);
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.w-55 {
+  margin-left: 3rem;
+  text-align: left;
+  @media(min-width:992px) {
+    width: 54%;
+    margin: auto !important;
+    text-align: left;
   }
 }

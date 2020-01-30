@@ -1,9 +1,11 @@
-import { FETCH_ASSETS_CONTAINERS, ASSETS, ASSET_DATA, RECURRING_DATA, ASSETS_ALL, OTHERS, HARDWARE, SOFTWARE, BUSINESS_CONTINUITY, CONNECTIVITY, CLEAR } from '../constants';
+import { FETCH_ASSETS_CONTAINERS, ASSETS, ASSET_DATA, RECURRING_DATA, ASSETS_ALL, COUNT_ASSETS, OTHERS, CONTAINERS_ALL, HARDWARE, SOFTWARE, BUSINESS_CONTINUITY, CONNECTIVITY, CLEAR } from '../constants';
 
 const initialState = {
   assetsContainers: [],
+  allAssetsContainers: [],
   assets: [],
   assetsAll: [],
+  countAssets: 0,
   recurring_data: {},
   asset_data: {},
   hardware: false,
@@ -20,6 +22,11 @@ export default function assets(state = initialState, action) {
         ...state,
         assetsContainers: [...state.assetsContainers, action.payload]
       }
+      case CONTAINERS_ALL:
+        return {
+          ...state,
+          allAssetsContainers: [...state.allAssetsContainers, action.payload]
+        }
     case ASSETS:
       return {
         ...state,
@@ -30,6 +37,11 @@ export default function assets(state = initialState, action) {
         ...state,
         assetsAll: [...state.assetsAll, action.payload]
       }
+    case COUNT_ASSETS:
+        return {
+          ...state,
+          countAssets: action.payload
+        }
     case RECURRING_DATA:
       const recurring_data = Object.assign({}, action.payload);
       return {
@@ -76,7 +88,9 @@ export default function assets(state = initialState, action) {
       const empty = {};
       return {
         ...state,
+        countAssets: 0,
         assets: [],
+        allAssetsContainers: [],
         asset_data: empty,
         assetsAll: [],
         assetsContainers: []

@@ -41,30 +41,32 @@ export class Login extends Component {
     }
     return (
       <>
+        <div className="coverr">
 
-        <div className="container-fluid height-100 auth-bg pt-4 pl-4">
-          <div className="auth-logo login">
-            <img className="logo" alt="logo" src={this.logo} />
-          </div>
-          <div className="flex-itemss">
-            <div className="col-lg-4 col-md-7 mx-auto">
-              <h2 className="component-header">Login</h2>
-              <p className="mb-5 text-center">Welcome. Sign in with your account details.</p>
-              <form onSubmit={this.submitForm}>
-                <div className="row">
-                  <div className="col-12 mr-auto">
-                    <input type="email" name="email" placeholder="Email address"
-                      onChange={e => this.handleChange("email", e.target.value)} />
+          <div className="container-fluid height-100 auth-bg pt-4 pl-4">
+            <div className="auth-logo login">
+              <img className="logo" alt="logo" src={this.logo} />
+            </div>
+            <div className="flex-itemss">
+              <div className="col-lg-4 col-md-7 mx-auto">
+                <h2 className="component-header">Login</h2>
+                <p className="mb-5 text-center">Welcome. Sign in with your account details.</p>
+                <form onSubmit={this.submitForm}>
+                  <div className="row">
+                    <div className="col-12 mr-auto">
+                      <input type="email" name="email" placeholder="Email address"
+                        onChange={e => this.handleChange("email", e.target.value)} />
+                    </div>
+                    <div className="col-12 mr-auto mt-3">
+                      <input type="password" name="Password" placeholder="Password"
+                        onChange={e => this.handleChange("password", e.target.value)} />
+                    </div>
+                    <div className="col-lg-12 mr-auto col-sm-10 mt-4">
+                      <button type="submit" onClick={this.submitForm} className="btn btn--primary type--uppercase">Submit</button>
+                    </div>
                   </div>
-                  <div className="col-12 mr-auto mt-3">
-                    <input type="password" name="Password" placeholder="Password"
-                      onChange={e => this.handleChange("password", e.target.value)} />
-                  </div>
-                  <div className="col-lg-12 mr-auto col-sm-10 mt-4">
-                    <button type="submit" onClick={this.submitForm} className="btn btn--primary type--uppercase">Submit</button>
-                  </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>

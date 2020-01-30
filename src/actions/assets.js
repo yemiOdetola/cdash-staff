@@ -1,14 +1,18 @@
-import { FETCH_ASSETS_CONTAINERS, RECURRING_DATA, ASSETS, ASSETS_ALL, ASSET_DATA, OTHERS, HARDWARE, SOFTWARE, CONNECTIVITY, BUSINESS_CONTINUITY, CLEAR } from '../constants';
+import { FETCH_ASSETS_CONTAINERS, RECURRING_DATA, ASSETS, ASSETS_ALL, ASSET_DATA, CONTAINERS_ALL, OTHERS, HARDWARE, SOFTWARE, COUNT_ASSETS, CONNECTIVITY, BUSINESS_CONTINUITY, CLEAR } from '../constants';
 import axios from 'axios';
 import globals from '../globals';
 
-export function fetchAssetsContainers() {
+export function fetchAssetsContainers(skip, count) {
   const userToken = localStorage.getItem('userToken');
   return dispatch => {
     dispatch(clearAssets(''))
     axios.get(`${globals.base_url}/asset`, {
       headers: {
         'Authorization': 'Bearer ' + userToken
+      },
+      params: {
+        skip: skip,
+        count: count
       }
     })
       .then(response => {
@@ -27,11 +31,67 @@ export function fetchAssetsContainers() {
   }
 }
 
-export function fetchAssets(id) {
+export function fetchAllAssetsContainers() {
+  const userToken = localStorage.getItem('userToken');
+  return dispatch => {
+    dispatch(clearAssets(''))
+    axios.get(`${globals.base_url}/asset/all`, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          const msg = response.data.msg || 'Failed, please retry.';
+          globals.createToast(msg, 2500, 'top');
+          return console.log(response, 'not successful');
+        }
+        let res = response.data;
+        dispatch(allAssetsContainers(res.data));
+      })
+      .catch(error => {
+        console.log('catch error register', error);
+        throw (error);
+      })
+  }
+}
+
+export function fetchAssets(id, skip, count) {
   const userToken = localStorage.getItem('userToken');
   return dispatch => {
     dispatch(clearAssets(''))
     axios.get(`${globals.base_url}/asset/asset_data/${id}`, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      },
+      params: {
+        skip: skip,
+        count: count
+      }
+    })
+      .then(response => {
+        if (response.data.status === false) {
+          const msg = response.data.msg || 'Please reload page.';
+          globals.createToast(msg, 3000, 'bottom-right');
+          return console.log(response, 'fetch asset not successful');
+        }
+        let res = response.data;
+        console.log('response', res);
+        dispatch(assets(res.data));
+      })
+      .catch(error => {
+        console.log('catch error register', error);
+        throw (error);
+      })
+  }
+}
+
+
+export function countAssets() {
+  const userToken = localStorage.getItem('userToken');
+  return dispatch => {
+    dispatch(clearAssets(''))
+    axios.get(`${globals.base_url}/asset/asset_data/all`, {
       headers: {
         'Authorization': 'Bearer ' + userToken
       }
@@ -44,7 +104,7 @@ export function fetchAssets(id) {
         }
         let res = response.data;
         console.log('response', res);
-        dispatch(assets(res.data));
+        dispatch(count(res.data.length));
       })
       .catch(error => {
         console.log('catch error register', error);
@@ -175,6 +235,19 @@ function assetsAll(data) {
   }
 }
 
+function allAssetsContainers(data) {
+  return {
+    type: CONTAINERS_ALL,
+    payload: data
+  }
+}
+
+function count(data) {
+  return {
+    type: COUNT_ASSETS,
+    payload: data
+  }
+}
 function others(data) {
   if(data.length > 0) {
     console.log('greater than 0');

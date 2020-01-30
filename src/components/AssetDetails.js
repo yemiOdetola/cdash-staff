@@ -4,7 +4,7 @@ import globals from '../globals';
 import { Link } from 'react-router-dom';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
-import { fetchAssetsAll } from '../actions/assets';
+import { fetchAssets, countAssets } from '../actions/assets';
 
 
 export class AssetDetails extends Component {
@@ -40,20 +40,18 @@ export class AssetDetails extends Component {
   };
 
   componentDidMount() {
-    const assetType = this.props.match.params['id'];
+    const assetId = this.props.match.params['id'];
     if (localStorage.getItem('userToken') && localStorage.getItem('userId')) {
       let skip = this.state.pageIndex * this.state.limit;
-      this.setState({
-        type: assetType
-      })
-      this.props.fetchAssetsAll(assetType, skip, this.state.limit);
+      this.props.fetchAssets(assetId, skip, this.state.limit);
+      this.props.countAssets();
     } else {
       this.props.history.push('/login');
     }
   }
 
   itemNav() {
-    if (((this.state.pageIndex * 10) + 10) >= this.props.assetsAll.length) {
+    if (((this.state.pageIndex * 10) + 10) >= this.props.countAssets) {
       this.disableNext = true;
     } else {
       this.disableNext = false;
@@ -89,13 +87,13 @@ export class AssetDetails extends Component {
 
   render() {
     let table = [];
-    if (this.props.assetsAll.length <= 10) {
+    if (this.props.countAssets <= 10) {
       this.disableNext = true;
     } else {
       this.disableNext = false;
     }
-    if (this.props.assetsAll[0]) {
-      this.props.assetsAll[0].forEach((asset, i) => {
+    if (this.props.assets[0]) {
+      this.props.assets[0].forEach((asset, i) => {
         table.push(
           <tr key={i}>
             <td>{asset.name}</td>
@@ -113,7 +111,7 @@ export class AssetDetails extends Component {
     return (
       <>
         <div className={'data-loading'}>
-          <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.assetsAll.length ? 'loader-img' : 'hide'} alt="+" />
+          <img src={require("../assets/images/spinner.svg")} className={this.state.loading && !this.props.assets.length ? 'loader-img' : 'hide'} alt="+" />
         </div>
         <Header />
         <div className="go-back mt-5" onClick={this.back}>
@@ -137,8 +135,8 @@ export class AssetDetails extends Component {
             </table>
           </div>
           <div className="next-prev">
-            <button className="bttn" disabled={this.disablePrev}>Prev</button>
-            <button className="bttn" disabled={this.disableNext}>Next</button>
+            <button className="bttn" onClick={this.getPrev} disabled={this.disablePrev}>Prev</button>
+            <button className="bttn" onClick={this.getNext} disabled={this.disableNext}>Next</button>
           </div>
         </section>
         <Footer />
@@ -149,8 +147,9 @@ export class AssetDetails extends Component {
 
 const mapStateToProps = (state) => ({
   assets: state.assets.assets,
-  assetsAll: state.assets.assetsAll
+  assetsAll: state.assets.assetsAll,
+  countAssets: state.assets.countAssets
 })
 
 
-export default connect(mapStateToProps, { fetchAssetsAll })(AssetDetails)
+export default connect(mapStateToProps, { fetchAssets, countAssets })(AssetDetails)

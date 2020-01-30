@@ -113,7 +113,7 @@ export class AssetData extends Component {
                           <p>{this.props.asset_data.type}</p>
                         </div>
                         <div className={this.props.asset_data.technical_details ? "text-block" : 'hide'}>
-                          <h4>Technicaldetails</h4>
+                          <h4>Technical details</h4>
                           <p>{this.props.asset_data.technical_details}</p>
                         </div>
                         <div className={this.props.asset_data.location_of_deployment ? "text-block" : 'hide'}>

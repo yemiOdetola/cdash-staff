@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
-import globals from '../globals';
+// import globals from '../globals';
 import { fetchAssetsContainers, fetchAssetsAll } from '../actions/assets';
 
 export class Landing extends Component {
@@ -16,11 +16,11 @@ export class Landing extends Component {
 
   componentDidMount() {
     if (localStorage.getItem('userToken') && localStorage.getItem('userId')) {
-      this.props.fetchAssetsContainers();
-      let assets = ['Hardware', 'Software', 'Connectivity', 'Others', 'Business_continuity'];
-      assets.forEach(asset => {
-        this.props.fetchAssetsAll(asset, 0, 99);
-      });
+      this.props.fetchAssetsContainers(0, 7);
+      // let assets = ['Hardware', 'Software', 'Connectivity', 'Others', 'Business_continuity'];
+      // assets.forEach(asset => {
+      //   this.props.fetchAssetsAll(asset, 0, 99);
+      // });
     } else {
       this.props.history.push('/login');
     }
@@ -30,10 +30,13 @@ export class Landing extends Component {
     if (this.props.assetsContainers[0]) {
       this.props.assetsContainers[0].forEach((container, i) => {
         assetsContainers.push(
-          <div className="each-asset" key={i}>
-            <h3 className="title">{container.name}</h3>
-            <div className="sub">{globals.formatDate(container.date)}</div>
-            <Link to={`/asset-details/${container._id}`}>View details</Link>
+          // <div className="each-asset" key={i}>
+          //   <h3 className="title">{container.name}</h3>
+          //   <div className="sub">{globals.formatDate(container.date)}</div>
+          //   <Link to={`/asset-details/${container._id}`}>View details</Link>
+          // </div>
+          <div className="each-asset">
+            <h3 className="title"><Link to={`/asset-details/${container._id}`}>{container.name}</Link></h3>
           </div>
         )
       })
@@ -50,36 +53,31 @@ export class Landing extends Component {
               <section className="component-section">
                 <div className="col-md-12">
                   <div className="assets change">
-                    <div className={this.props.hardware ? "each-asset" : 'hide'}>
-                      <h3 className="title"><Link to={`/asset-details/Hardware`}>Hardware</Link></h3>
-                    </div>
-                    <div className={this.props.software ? "each-asset" : 'hide'}>
-                      <h3 className="title"><Link to={`/asset-details/Software`}>Software</Link></h3>
-                    </div>
-                    {/* <div className="underline-sm"></div> */}
-                    <div className={this.props.connectivity ? "each-asset" : 'hide'}>
-                      <h3 className="title"><Link to={`/asset-details/Connectivity`}>Connectivity</Link></h3>
-                    </div>
-                    {/* <div className="underline-bg"></div> */}
-                    <div className={this.props.business_continuity ? "each-asset" : 'hide'}>
-                      <h3 className="title"><Link to={`/asset-details/Business_continuity`}>Business continuity</Link></h3>
-                    </div>
-                    <div className={this.props.others ? "each-asset" : 'hide'}>
-                      <h3 className="title"><Link to={`/asset-details/Others`}>Others</Link></h3>
-                    </div>
-                    {/* <div className="underline-sm"></div> */}
+                    {assetsContainers}
                     <div className="each-asset">
                       <h3 className="title"><Link to={`/staffs`}>Human assets</Link></h3>
                     </div>
                     <div className="each-asset">
                       <h3 className="title"><Link to={`/socials`}>Social media</Link></h3>
                     </div>
-                    {/* <div className="underline-sm"></div> */}
-                    {/* <div className="underline-bg"></div> */}
-                    {/* <div className="each-asset">
-                      <h3 className="title"><Link to={`/socials`}>Social media</Link></h3>
+                    {/* <div className={this.props.hardware ? "each-asset" : 'hide'}>
+                      <h3 className="title"><Link to={`/asset-details/Hardware`}>Hardware</Link></h3>
+                    </div>
+                    <div className={this.props.software ? "each-asset" : 'hide'}>
+                      <h3 className="title"><Link to={`/asset-details/Software`}>Software</Link></h3>
+                    </div>
+                    <div className={this.props.connectivity ? "each-asset" : 'hide'}>
+                      <h3 className="title"><Link to={`/asset-details/Connectivity`}>Connectivity</Link></h3>
+                    </div>
+                    <div className={this.props.business_continuity ? "each-asset" : 'hide'}>
+                      <h3 className="title"><Link to={`/asset-details/Business_continuity`}>Business continuity</Link></h3>
+                    </div>
+                    <div className={this.props.others ? "each-asset" : 'hide'}>
+                      <h3 className="title"><Link to={`/asset-details/Others`}>Others</Link></h3>
                     </div> */}
-                    {/* <div className="underline-sm"></div> */}
+                  </div>
+                  <div className="text-center mt-4 w-55">
+                    <Link to="/all-assets">See all assets</Link>
                   </div>
                 </div>
               </section>
