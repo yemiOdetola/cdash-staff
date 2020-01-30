@@ -76,9 +76,13 @@ export class AssetData extends Component {
                         </div>
                       </div>
                       <div className="col-lg-8 p-5 others">
-                        <div className={this.props.asset_data.projected_cost ? "text-block" : 'hide'}>
-                          <h4>Projected cost</h4>
-                          <p>{this.props.asset_data.projected_cost}</p>
+                        <div className={this.props.asset_data.projected_cost && this.props.asset_data.projected_cost?.naira ? "text-block" : 'hide'}>
+                          <h4>Projected cost (₦)</h4>
+                          <p>{this.props.asset_data.projected_cost?.naira}</p>
+                        </div>
+                        <div className={this.props.asset_data.projected_cost && this.props.asset_data.projected_cost?.dollar  ? "text-block" : 'hide'}>
+                          <h4>Projected cost ($)</h4>
+                          <p>{this.props.asset_data.projected_cost?.dollar}</p>
                         </div>
                         <div className={this.props.asset_data.summary ? "text-block" : 'hide'}>
                           <h4>Summary</h4>
