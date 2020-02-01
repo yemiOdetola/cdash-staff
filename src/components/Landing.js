@@ -60,6 +60,9 @@ export class Landing extends Component {
                     <div className="each-asset">
                       <h3 className="title"><Link to={`/socials`}>Social media</Link></h3>
                     </div>
+                    <div className="each-asset reduced">
+                      <h3 className="title"><Link to="/all-assets">See all assets</Link></h3>
+                    </div>
                     {/* <div className={this.props.hardware ? "each-asset" : 'hide'}>
                       <h3 className="title"><Link to={`/asset-details/Hardware`}>Hardware</Link></h3>
                     </div>
@@ -76,9 +79,9 @@ export class Landing extends Component {
                       <h3 className="title"><Link to={`/asset-details/Others`}>Others</Link></h3>
                     </div> */}
                   </div>
-                  <div className="text-center mt-4 w-55">
+                  {/* <div className="text-center mt-4 w-55">
                     <Link to="/all-assets">See all assets</Link>
-                  </div>
+                  </div> */}
                 </div>
               </section>
               <section className="text-center">
