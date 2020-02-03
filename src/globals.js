@@ -7,7 +7,7 @@ const globals = {
         }
         return str.charAt(0).toUpperCase() + str.slice(1)
     },
-    base_url: 'http://142.93.6.250/v1',
+    base_url: 'https://api.cdash.com.ng/v1',
     tokens: JSON.parse(localStorage.getItem('activationTokens')),
     createToast: function (text, timeLeft, position) {
         return toaster.notify(text, {
