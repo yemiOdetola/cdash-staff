@@ -31,14 +31,20 @@ export class AllContainer extends Component {
     if (this.props.allAssetsContainers[0]) {
       this.props.allAssetsContainers[0].forEach((container, i) => {
         assetsContainers.push(
-          // <div className="each-asset" key={i}>
-          //   <h3 className="title">{container.name}</h3>
-          //   <div className="sub">{globals.formatDate(container.date)}</div>
-          //   <Link to={`/asset-details/${container._id}`}>View details</Link>
-          // </div>
-          <div className="each-asset">
-            <h3 className="title"><Link to={`/asset-details/${container._id}`}>{container.name}</Link></h3>
+          <div className="ass">
+            <div className="icon">
+              {container.icon && container.icon.includes('://')
+                ? <img src={container.icon} alt="*" />
+                : <i className={container.icon ? `las la-3x + ${container.icon}` : 'lab la-renren'}></i>
+              }
+            </div>
+            <div className="name">
+              <Link to={`/asset-details/${container._id}`}>{container.name}</Link>
+            </div>
           </div>
+          // <div className="each-asset">
+          //   <h3 className="title"><Link to={`/asset-details/${container._id}`}>{container.name}</Link></h3>
+          // </div>
         )
       })
     }

@@ -17,10 +17,6 @@ export class Landing extends Component {
   componentDidMount() {
     if (localStorage.getItem('userToken') && localStorage.getItem('userId')) {
       this.props.fetchAssetsContainers(0, 7);
-      // let assets = ['Hardware', 'Software', 'Connectivity', 'Others', 'Business_continuity'];
-      // assets.forEach(asset => {
-      //   this.props.fetchAssetsAll(asset, 0, 99);
-      // });
     } else {
       this.props.history.push('/login');
     }
@@ -30,14 +26,20 @@ export class Landing extends Component {
     if (this.props.assetsContainers[0]) {
       this.props.assetsContainers[0].forEach((container, i) => {
         assetsContainers.push(
-          // <div className="each-asset" key={i}>
-          //   <h3 className="title">{container.name}</h3>
-          //   <div className="sub">{globals.formatDate(container.date)}</div>
-          //   <Link to={`/asset-details/${container._id}`}>View details</Link>
-          // </div>
-          <div className="each-asset">
-            <h3 className="title"><Link to={`/asset-details/${container._id}`}>{container.name}</Link></h3>
+          <div className="ass">
+            <div className="icon">
+              {container.icon && container.icon.includes('://')
+                ? <img src={container.icon} alt="*" />
+                : <i className={container.icon ? `las la-3x + ${container.icon}` : 'lab la-renren'}></i>
+              }
+            </div>
+            <div className="name">
+              <Link to={`/asset-details/${container._id}`}>{container.name}</Link>
+            </div>
           </div>
+          // <div className="each-asset">
+          //   <h3 className="title"><Link to={`/asset-details/${container._id}`}>{container.name}</Link></h3>
+          // </div>
         )
       })
     }
@@ -52,16 +54,31 @@ export class Landing extends Component {
             <div className="col-lg-12 p-0">
               <section className="component-section">
                 <div className="col-md-12">
-                  <div className="assets change">
+                  <div className="assets">
                     {assetsContainers}
-                    <div className="each-asset">
-                      <h3 className="title"><Link to={`/staffs`}>Human assets</Link></h3>
+                    <div className="ass">
+                      <div className="icon">
+                        <i className='las la-3x lab la-rocket'></i>
+                      </div>
+                      <div className="name">
+                        <Link to={`/staffs`}>Human assets</Link>
+                      </div>
                     </div>
-                    <div className="each-asset">
-                      <h3 className="title"><Link to={`/socials`}>Social media</Link></h3>
+                    <div className="ass">
+                      <div className="icon">
+                        <i className='las la-3x lab la-tags'></i>
+                      </div>
+                      <div className="name">
+                        <Link to={`/socials`}>Social media</Link>
+                      </div>
                     </div>
-                    <div className="each-asset reduced">
-                      <h3 className="title"><Link to="/all-assets">See all assets</Link></h3>
+                    <div className="ass">
+                      <div className="icon">
+                        <i className='las la-3x lab la-server'></i>
+                      </div>
+                      <div className="name">
+                        <Link to="/all-assets">See all assets</Link>
+                      </div>
                     </div>
                     {/* <div className={this.props.hardware ? "each-asset" : 'hide'}>
                       <h3 className="title"><Link to={`/asset-details/Hardware`}>Hardware</Link></h3>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import '../node_modules/line-awesome/dist/line-awesome/css/line-awesome.min.css'; 
 import './assets/styles/stack-interface.css';
 import './assets/styles/theme.css';
 import './assets/styles/bootstrap.css';
