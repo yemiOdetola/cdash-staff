@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
-// import globals from '../globals';
+import globals from '../globals';
 import { fetchAssetsContainers, fetchAssetsAll } from '../actions/assets';
 
 export class Landing extends Component {
@@ -34,7 +34,7 @@ export class Landing extends Component {
               }
             </div>
             <div className="name">
-              <Link to={`/asset-details/${container._id}`}>{container.name}</Link>
+              <Link to={`/asset-details/${container._id}`}>{globals.trimName(container.name)}</Link>
             </div>
           </div>
           // <div className="each-asset">

@@ -24,16 +24,23 @@ const globals = {
             return 'n/A';
         }
     },
+    trimName: function (str) {
+        if (typeof str !== 'string' || str.length < 14) {
+            return str;
+        }
+        let substr = str.substring(0, 14)
+        return `${substr}...`
+    },
     trimSubtitle: function (str) {
-        if (typeof str !== 'string' && str.length > 136) {
-            return;
+        if (typeof str !== 'string' || str.length < 136) {
+            return str;
         }
         let substr = str.substring(0, 136)
         return `${substr}...`
     },
     trimSearch: function (str) {
-        if (typeof str !== 'string' && str.length > 75) {
-            return
+        if (typeof str !== 'string' || str.length < 75) {
+            return str;
         }
         let substr = str.substring(0, 75)
         return `${substr} ...`
@@ -42,7 +49,7 @@ const globals = {
         if (typeof str !== 'string') {
             return;
         }
-        if(str.length < 45) {
+        if (str.length < 45) {
             return str;
         }
         let substr = str.substring(0, 45)
