@@ -39,7 +39,7 @@ export class AllContainer extends Component {
               }
             </div>
             <div className="name">
-              <Link to={`/asset-details/${container._id}`}>{container.name}</Link>
+              <Link className="right" to={`/asset-details/${container._id}`}>{container.name}</Link>
             </div>
           </div>
           // <div className="each-asset">
