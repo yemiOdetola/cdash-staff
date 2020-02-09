@@ -66,14 +66,32 @@
       padding: 0.75rem;
       margin: 0.5rem;
       a {
+        width: 100%;
+      }
+      a {
         color: #333;
         text-decoration: none;
-        float: right;
-        font-weight: 400;
-        font-size: 0.875rem;
+        font-weight: 500;
+        font-size: 1rem;
+        &.right {
+          width: auto;
+          text-align: center;
+          text-align: center;
+          display: block;
+          @media(min-width: 768px) {
+            float: right;
+          }
+        }
+        @media(min-width: 992px) {
+          font-size: 1.25rem;
+        }
       }
       .icon {
         margin-bottom: 0.5rem;
+        @media(max-width: 767px) {
+          display: flex;
+          justify-content: center;
+        }
         img {
           height: 25px;
           width: auto;

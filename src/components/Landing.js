@@ -27,19 +27,18 @@ export class Landing extends Component {
       this.props.assetsContainers[0].forEach((container, i) => {
         assetsContainers.push(
           <div className="ass">
-            <div className="icon">
-              {container.icon && container.icon.includes('://')
-                ? <img src={container.icon} alt="*" />
-                : <i className={container.icon ? `las la-3x + ${container.icon}` : 'lab la-renren'}></i>
-              }
-            </div>
-            <div className="name">
-              <Link to={`/asset-details/${container._id}`}>{globals.trimName(container.name)}</Link>
-            </div>
+            <Link to={`/asset-details/${container._id}`}>
+              <div className="icon">
+                {container.icon && container.icon.includes('://')
+                  ? <img src={container.icon} alt="*" />
+                  : <i className={container.icon ? `las la-3x + ${container.icon}` : 'lab la-renren'}></i>
+                }
+              </div>
+              <div className="name">
+                <Link className="right" to={`/asset-details/${container._id}`}>{globals.trimName(container.name)}</Link>
+              </div>
+            </Link>
           </div>
-          // <div className="each-asset">
-          //   <h3 className="title"><Link to={`/asset-details/${container._id}`}>{container.name}</Link></h3>
-          // </div>
         )
       })
     }
@@ -57,28 +56,34 @@ export class Landing extends Component {
                   <div className="assets">
                     {assetsContainers}
                     <div className="ass">
-                      <div className="icon">
-                        <i className='las la-3x lab la-rocket'></i>
-                      </div>
-                      <div className="name">
-                        <Link to={`/staffs`}>Human assets</Link>
-                      </div>
+                      <Link to="/staffs">
+                        <div className="icon">
+                          <i className='las la-3x lab la-rocket'></i>
+                        </div>
+                        <div className="name">
+                          <Link className="right" to={`/staffs`}>Human assets</Link>
+                        </div>
+                      </Link>
                     </div>
                     <div className="ass">
-                      <div className="icon">
-                        <i className='las la-3x lab la-tags'></i>
-                      </div>
-                      <div className="name">
-                        <Link to={`/socials`}>Social media</Link>
-                      </div>
+                      <Link to="/socials">
+                        <div className="icon">
+                          <i className='las la-3x lab la-tags'></i>
+                        </div>
+                        <div className="name">
+                          <Link className="right" to={`/socials`}>Social media</Link>
+                        </div>
+                      </Link>
                     </div>
                     <div className="ass">
-                      <div className="icon">
-                        <i className='las la-3x lab la-server'></i>
-                      </div>
-                      <div className="name">
-                        <Link to="/all-assets">See all assets</Link>
-                      </div>
+                      <Link to="/all-assets">
+                        <div className="icon">
+                          <i className='las la-3x lab la-server'></i>
+                        </div>
+                        <div className="name">
+                          <Link className="right" to="/all-assets">See all assets</Link>
+                        </div>
+                      </Link>
                     </div>
                     {/* <div className={this.props.hardware ? "each-asset" : 'hide'}>
                       <h3 className="title"><Link to={`/asset-details/Hardware`}>Hardware</Link></h3>
