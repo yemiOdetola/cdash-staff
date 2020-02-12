@@ -68,7 +68,7 @@
       a {
         width: 100%;
       }
-      a {
+      a, span {
         color: #333;
         text-decoration: none;
         font-weight: 500;
@@ -568,12 +568,19 @@ form.chart-form {
 
 .base-menu {
   @media(min-width: 992px) {
-    width: 65%;
+    width: 75%;
+    margin: auto;
   }
-  float: right;
-  padding-right: 1.5rem;
-  .text-block a h4 {
+   @media(min-width: 1200px) {
+      width: 60%;
+      margin: auto;
+    }
+  padding-left: 2.25rem;
+  .text-block a{
+    text-align: left;
+    h4 {
     color: #333;
     font-weight: 600;
+    }
   }
 }

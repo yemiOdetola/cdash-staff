@@ -76,7 +76,6 @@ export function fetchAssets(id, skip, count) {
           return console.log(response, 'fetch asset not successful');
         }
         let res = response.data;
-        console.log('response', res);
         dispatch(assets(res.data));
       })
       .catch(error => {
@@ -103,7 +102,6 @@ export function countAssets() {
           return console.log(response, 'fetch asset not successful');
         }
         let res = response.data;
-        console.log('response', res);
         dispatch(count(res.data.length));
       })
       .catch(error => {
@@ -132,12 +130,11 @@ export function fetchAssetsAll(type, skip, count) {
           return console.log(response, 'fetch asset not successful');
         }
         let res = response.data;
-        if(type === 'Others') {dispatch(others(res.data))};
-        if(type === 'Hardware') {dispatch(hardware(res.data))};
-        if(type === 'Software') {dispatch(software(res.data))};
-        if(type === 'Connectivity') {dispatch(connectivity(res.data))};
-        if(type === 'Business_continuity') {dispatch(business_continuity(res.data))};
-        console.log('response', res);
+        if (type === 'Others') { dispatch(others(res.data)) };
+        if (type === 'Hardware') { dispatch(hardware(res.data)) };
+        if (type === 'Software') { dispatch(software(res.data)) };
+        if (type === 'Connectivity') { dispatch(connectivity(res.data)) };
+        if (type === 'Business_continuity') { dispatch(business_continuity(res.data)) };
         dispatch(assetsAll(res.data));
       })
       .catch(error => {
@@ -164,7 +161,6 @@ export function fetchRecurringData(payload) {
           return console.log(response, 'fetch asset not successful');
         }
         let res = response.data;
-        console.log('response', res);
         dispatch(reccuringData(res));
       })
       .catch(error => {
@@ -249,7 +245,7 @@ function count(data) {
   }
 }
 function others(data) {
-  if(data.length > 0) {
+  if (data.length > 0) {
     console.log('greater than 0');
     return {
       type: OTHERS,
@@ -265,7 +261,7 @@ function others(data) {
 }
 
 function business_continuity(data) {
-  if(data.length > 0) {
+  if (data.length > 0) {
     return {
       type: BUSINESS_CONTINUITY,
       payload: true
@@ -279,7 +275,7 @@ function business_continuity(data) {
 }
 
 function hardware(data) {
-  if(data.length > 0) {
+  if (data.length > 0) {
     return {
       type: HARDWARE,
       payload: true
@@ -293,7 +289,7 @@ function hardware(data) {
 }
 
 function software(data) {
-  if(data.length > 0) {
+  if (data.length > 0) {
     return {
       type: SOFTWARE,
       payload: true
@@ -307,7 +303,7 @@ function software(data) {
 }
 
 function connectivity(data) {
-  if(data.length > 0) {
+  if (data.length > 0) {
     return {
       type: CONNECTIVITY,
       payload: true

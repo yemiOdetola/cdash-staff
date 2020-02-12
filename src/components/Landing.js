@@ -26,7 +26,7 @@ export class Landing extends Component {
     if (this.props.assetsContainers[0]) {
       this.props.assetsContainers[0].forEach((container, i) => {
         assetsContainers.push(
-          <div className="ass">
+          <div className="ass" key={i}>
             <Link to={`/asset-details/${container._id}`}>
               <div className="icon">
                 {container.icon && container.icon.includes('://')
@@ -35,7 +35,7 @@ export class Landing extends Component {
                 }
               </div>
               <div className="name">
-                <Link className="right" to={`/asset-details/${container._id}`}>{globals.trimName(container.name)}</Link>
+                <span className="right">{globals.trimName(container.name)}</span>
               </div>
             </Link>
           </div>
@@ -61,7 +61,7 @@ export class Landing extends Component {
                           <img src={require('../assets/images/stafff.svg')} alt="#" />
                         </div>
                         <div className="name">
-                          <Link className="right" to={`/staffs`}>Human assets</Link>
+                          <span className="right">Human assets</span>
                         </div>
                       </Link>
                     </div>
@@ -71,7 +71,7 @@ export class Landing extends Component {
                           <img src={require('../assets/images/sociall.svg')} alt="#" />
                         </div>
                         <div className="name">
-                          <Link className="right" to={`/socials`}>Social media</Link>
+                          <span className="right">Social media</span>
                         </div>
                       </Link>
                     </div>
@@ -81,7 +81,7 @@ export class Landing extends Component {
                           <i className='las la-3x lab la-server'></i>
                         </div>
                         <div className="name">
-                          <Link className="right" to="/all-assets">See all assets</Link>
+                          <span className="right">See all assets</span>
                         </div>
                       </Link>
                     </div>
@@ -107,38 +107,36 @@ export class Landing extends Component {
                 </div>
               </section>
               <section className="text-center">
-                <div className="container">
-                  <div className="base-menu">
-                    <div className="text-block menu">
-                      <Link to="/expenses-turnover">
-                        {/* <img src={require('../assets/images/turnover.svg')} className="menu-img" alt="staffs" /> */}
-                        <h4>Expenses/Turnover</h4>
-                      </Link>
-                    </div>
-                    <div className="text-block menu">
-                      <Link to="/recurring-expenditure">
-                        {/* <img src={require('../assets/images/recurring.svg')} className="menu-img" alt="staffs" /> */}
-                        <h4>Recurring expenditure</h4>
-                      </Link>
-                    </div>
-                    <div className="text-block menu">
-                      <Link to="/capital-expenditure">
-                        {/* <img src={require('../assets/images/capital.svg')} className="menu-img" alt="staffs" /> */}
-                        <h4>Capital expenditure</h4>
-                      </Link>
-                    </div>
-                    <div className="text-block menu">
-                      <Link to="/logs">
-                        {/* <img src={require('../assets/images/logs.svg')} className="menu-img" alt="staffs" /> */}
-                        <h4>Logs</h4>
-                      </Link>
-                    </div>
-                    <div className="text-block menu">
-                      <Link to="/maturity-scores">
-                        {/* <img src={require('../assets/images/scores.svg')} className="menu-img" alt="staffs" /> */}
-                        <h4>Maturity scores</h4>
-                      </Link>
-                    </div>
+                <div className="base-menu">
+                  <div className="text-block menu">
+                    <Link to="/expenses-turnover">
+                      {/* <img src={require('../assets/images/turnover.svg')} className="menu-img" alt="staffs" /> */}
+                      <h4>Expenses/Turnover</h4>
+                    </Link>
+                  </div>
+                  <div className="text-block menu">
+                    <Link to="/recurring-expenditure">
+                      {/* <img src={require('../assets/images/recurring.svg')} className="menu-img" alt="staffs" /> */}
+                      <h4>Recurring expenditure</h4>
+                    </Link>
+                  </div>
+                  <div className="text-block menu">
+                    <Link to="/capital-expenditure">
+                      {/* <img src={require('../assets/images/capital.svg')} className="menu-img" alt="staffs" /> */}
+                      <h4>Capital expenditure</h4>
+                    </Link>
+                  </div>
+                  <div className="text-block menu">
+                    <Link to="/logs">
+                      {/* <img src={require('../assets/images/logs.svg')} className="menu-img" alt="staffs" /> */}
+                      <h4>Logs</h4>
+                    </Link>
+                  </div>
+                  <div className="text-block menu">
+                    <Link to="/maturity-scores">
+                      {/* <img src={require('../assets/images/scores.svg')} className="menu-img" alt="staffs" /> */}
+                      <h4>Maturity scores</h4>
+                    </Link>
                   </div>
                 </div>
               </section>

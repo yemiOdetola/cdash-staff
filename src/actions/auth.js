@@ -40,7 +40,6 @@ export function fetchStaffs() {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('staffs', res.data);
         dispatch(staffs(res.data));
       })
       .catch(error => {
@@ -66,7 +65,6 @@ export function getOrgdetails() {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('orgdetails', res.data);
         dispatch(orgDetails(res.data));
       })
       .catch(error => {
@@ -93,7 +91,6 @@ export function fetchUsers() {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('users', res.data);
         dispatch(users(res.data));
       })
       .catch(error => {
@@ -120,7 +117,6 @@ export function fetchUserDetails(id) {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('user details', res.data);
         dispatch(userDetails(res.data));
       })
       .catch(error => {
@@ -146,7 +142,6 @@ export function fetchStaffDetails(id) {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('staff details', res.data);
         dispatch(staffDetails(res.data));
       })
       .catch(error => {

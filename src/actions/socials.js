@@ -19,7 +19,6 @@ export function fetchSocials() {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('socials', res.data);
         dispatch(socials(res.data));
       })
       .catch(error => {
@@ -46,7 +45,6 @@ export function fetchSocialDetails(id) {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('social details', res.data);
         dispatch(socialDetails(res.data));
       })
       .catch(error => {

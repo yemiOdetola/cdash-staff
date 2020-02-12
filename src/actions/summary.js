@@ -20,7 +20,6 @@ export function assetsCount() {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('assets count', res.all_data);
         dispatch(assets(res.all_data));
       })
       .catch(error => {
@@ -44,7 +43,6 @@ export function usersCount() {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('assets count', res.data);
         dispatch(users(res.data));
       })
       .catch(error => {
@@ -68,7 +66,6 @@ export function staffsCount() {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('assets count', res.data);
         dispatch(staffs(res.data));
       })
       .catch(error => {
@@ -83,7 +80,7 @@ export function avgCount() {
   const userToken = localStorage.getItem('userToken');
   return dispatch => {
     dispatch(clearSummary(''))
-    axios.post(`${globals.base_url}/maturity/average`,{}, {
+    axios.post(`${globals.base_url}/maturity/average`, {}, {
       headers: {
         'Authorization': 'Bearer ' + userToken
       }
@@ -93,7 +90,6 @@ export function avgCount() {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('assets count', res.average);
         dispatch(avgscore(res.average));
       })
       .catch(error => {
@@ -121,7 +117,6 @@ export function fetchScores() {
           return console.log(response, 'fetch users not successful');
         }
         let res = response.data;
-        console.log('maturity count', res.data);
         dispatch(maturity(res.data));
       })
       .catch(error => {
@@ -135,7 +130,7 @@ export function fetchAverage() {
   const userToken = localStorage.getItem('userToken');
   return dispatch => {
     dispatch(clearSummary(''))
-    axios.post(`${globals.base_url}/maturity/average`,{}, {
+    axios.post(`${globals.base_url}/maturity/average`, {}, {
       headers: {
         'Authorization': 'Bearer ' + userToken
       }
