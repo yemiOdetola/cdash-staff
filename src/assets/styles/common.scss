@@ -565,3 +565,15 @@ form.chart-form {
 .la, .lab, .las {
   color: #555;
 }
+
+.base-menu {
+  @media(min-width: 992px) {
+    width: 65%;
+  }
+  float: right;
+  padding-right: 1.5rem;
+  .text-block a h4 {
+    color: #333;
+    font-weight: 600;
+  }
+}
