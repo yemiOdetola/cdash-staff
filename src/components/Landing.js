@@ -58,7 +58,7 @@ export class Landing extends Component {
                     <div className="ass">
                       <Link to="/staffs">
                         <div className="icon">
-                          <i className='las la-3x lab la-rocket'></i>
+                        <img src={require('../assets/images/stafff.svg')} alt="#" />
                         </div>
                         <div className="name">
                           <Link className="right" to={`/staffs`}>Human assets</Link>
@@ -68,7 +68,7 @@ export class Landing extends Component {
                     <div className="ass">
                       <Link to="/socials">
                         <div className="icon">
-                          <i className='las la-3x lab la-tags'></i>
+                          <img src={require('../assets/images/sociall.svg')} alt="#" />
                         </div>
                         <div className="name">
                           <Link className="right" to={`/socials`}>Social media</Link>
@@ -112,7 +112,7 @@ export class Landing extends Component {
                     <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/expenses-turnover">
-                          <img src={require('../assets/images/turnover.svg')} className="menu-img" alt="staffs" />
+                          {/* <img src={require('../assets/images/turnover.svg')} className="menu-img" alt="staffs" /> */}
                           <h4>Expenses/Turnover</h4>
                         </Link>
                       </div>
@@ -120,7 +120,7 @@ export class Landing extends Component {
                     <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/recurring-expenditure">
-                          <img src={require('../assets/images/recurring.svg')} className="menu-img" alt="staffs" />
+                          {/* <img src={require('../assets/images/recurring.svg')} className="menu-img" alt="staffs" /> */}
                           <h4>Recurring expenditure</h4>
                         </Link>
                       </div>
@@ -128,7 +128,7 @@ export class Landing extends Component {
                     <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/capital-expenditure">
-                          <img src={require('../assets/images/capital.svg')} className="menu-img" alt="staffs" />
+                          {/* <img src={require('../assets/images/capital.svg')} className="menu-img" alt="staffs" /> */}
                           <h4>Capital expenditure</h4>
                         </Link>
                       </div>
@@ -136,7 +136,7 @@ export class Landing extends Component {
                     <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/logs">
-                          <img src={require('../assets/images/logs.svg')} className="menu-img" alt="staffs" />
+                          {/* <img src={require('../assets/images/logs.svg')} className="menu-img" alt="staffs" /> */}
                           <h4>Logs</h4>
                         </Link>
                       </div>
@@ -144,7 +144,7 @@ export class Landing extends Component {
                     <div className="col-md-2 col-lg-2">
                       <div className="text-block menu">
                         <Link to="/maturity-scores">
-                          <img src={require('../assets/images/scores.svg')} className="menu-img" alt="staffs" />
+                          {/* <img src={require('../assets/images/scores.svg')} className="menu-img" alt="staffs" /> */}
                           <h4>Maturity scores</h4>
                         </Link>
                       </div>
