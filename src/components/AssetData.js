@@ -13,7 +13,7 @@ export class AssetData extends Component {
       loading: true,
       recurring_dollar: 0,
       recurring_naira: 0,
-      data: { datasets:[], labels:[] }
+      data: { datasets: [], labels: [] }
     }
   }
   chartOptions = {
@@ -71,22 +71,24 @@ export class AssetData extends Component {
                       <div className="col-lg-4 p-5">
                         <div className="text-block">
                           <h1 className="title">{globals.capitalize(this.props.asset_data.name) || 'Asset'} details</h1>
-                          <img className={this.props.asset_data.icon ? "icon" : 'hide'} src={this.props.asset_data.icon} alt={this.props.asset_data.name} />
+                          <a className={this.props.asset_data.icon ? "" : 'hide'} href={this.props.asset_data.icon} target="_blank" rel="noopener noreferrer">
+                            <img className={this.props.asset_data.icon ? "icon" : 'hide'} src={this.props.asset_data.icon} alt={this.props.asset_data.name} />
+                          </a>
                           <p className="date" >{globals.formatDate(this.props.asset_data.date)}</p>
                         </div>
                       </div>
                       <div className="col-lg-8 p-5 others">
+                        <div className={this.props.asset_data.summary ? "text-block" : 'hide'}>
+                          <h4>Summary</h4>
+                          <p>{this.props.asset_data.summary}</p>
+                        </div>
                         <div className={this.props.asset_data.projected_cost && this.props.asset_data.projected_cost?.naira ? "text-block" : 'hide'}>
                           <h4>Projected cost (₦)</h4>
                           <p>{this.props.asset_data.projected_cost?.naira}</p>
                         </div>
-                        <div className={this.props.asset_data.projected_cost && this.props.asset_data.projected_cost?.dollar  ? "text-block" : 'hide'}>
+                        <div className={this.props.asset_data.projected_cost && this.props.asset_data.projected_cost?.dollar ? "text-block" : 'hide'}>
                           <h4>Projected cost ($)</h4>
                           <p>{this.props.asset_data.projected_cost?.dollar}</p>
-                        </div>
-                        <div className={this.props.asset_data.summary ? "text-block" : 'hide'}>
-                          <h4>Summary</h4>
-                          <p>{this.props.asset_data.summary}</p>
                         </div>
                         <div className={this.props.asset_data.date_acquired ? "text-block" : 'hide'}>
                           <h4>Date acquired</h4>

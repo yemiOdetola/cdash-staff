@@ -93,10 +93,10 @@
           justify-content: center;
         }
         img {
-          height: 25px;
+          height: 40px;
           width: auto;
           @media(min-width: 768px) {
-            height: 45px;
+            height: 65px;
           }
         }
         i {
@@ -277,11 +277,16 @@
       margin: 1rem;
     }
   }
+  a {
+    &.hide {
+      display: none;
+    }
+  }
   .icon {
     display: block;
-    margin: 1rem 0;
-    width: 70px;
-    height: 70px;
+    margin: 2rem auto;
+    width: 200px;
+    height: auto;
     border-radius: 50%;
   }
   .date {
